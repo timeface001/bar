@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.etsk.api.entity.domain.BarPicture">
+<resultMap type="com.fs.bar.entity.BarPicture" id="BarPicture">
+      <id column="id" property="id"/>
+      <id column="type" property="type"/>
+      <id column="url" property="url"/>
+      <id column="create_time" property="createTime"/>
+      <id column="bar_id" property="barId"/>
+</resultMap><!--接口说明:新增bar_picture数据-->
+<insert id="save" parameterType="BarPicture">
+	insert into bar_picture(id,type,url,create_time,bar_id)values(#{id},#{type},#{url},#{createTime},#{barId})
+</insert>
+
+<!--接口说明:修改bar_picture数据-->
+<update id="update" parameterType="BarPicture">
+	update bar_picture set id=#{id},type=#{type},url=#{url},create_time=#{createTime},bar_id=#{barId} WHERE ID=#{id}
+</update>
+
+<!--接口说明:删除bar_picture数据-->
+<delete id="deleteById" parameterType="int"> 
+	delete from TEACHER where ID=#{id}
+</delete>
+
+<!--根据map参数查询bar_picture数据-->
+<select id="findOneByMap" parameterType="java.util.Map" resultMap="BarPicture">
+	select a.* from bar_picture a where 1=1 
+	limit 0,1 
+</select>
+
+<!--根据map参数查询bar_picture数据-->
+<select id="findByMap" parameterType="java.util.Map" resultMap="BarPicture">
+	select * from bar_picture  where 1=1 
+<if test="id!=null and id!=''">
+    and id=#{id} 
+</if>
+<if test="type!=null and type!=''">
+    and type=#{type} 
+</if>
+<if test="url!=null and url!=''">
+    and url=#{url} 
+</if>
+<if test="createTime!=null and createTime!=''">
+    and create_time=#{createTime} 
+</if>
+<if test="barId!=null and barId!=''">
+    and bar_id=#{barId} 
+</if>
+</select>
+
+<!--查询所有bar_picture数据-->
+<select id="findAll" resultMap="BarPicture">
+	select * from bar_picture 
+</select>
+
+<!--根据条件查询bar_picture表数据-->
+<select id="queryCount" parameterType="java.util.Map" resultType="int">
+	select count(1) from bar_picture  where 1=1  
+</select>
+
+
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.etsk.api.entity.domain.BarPrice">
+<resultMap type="com.fs.bar.entity.BarPrice" id="BarPrice">
+      <id column="id" property="id"/>
+      <id column="bar_id" property="barId"/>
+      <id column="type" property="type"/>
+      <id column="price" property="price"/>
+</resultMap><!--接口说明:新增bar_price数据-->
+<insert id="save" parameterType="BarPrice">
+	insert into bar_price(id,bar_id,type,price)values(#{id},#{barId},#{type},#{price})
+</insert>
+
+<!--接口说明:修改bar_price数据-->
+<update id="update" parameterType="BarPrice">
+	update bar_price set id=#{id},bar_id=#{barId},type=#{type},price=#{price} WHERE ID=#{id}
+</update>
+
+<!--接口说明:删除bar_price数据-->
+<delete id="deleteById" parameterType="int"> 
+	delete from TEACHER where ID=#{id}
+</delete>
+
+<!--根据map参数查询bar_price数据-->
+<select id="findOneByMap" parameterType="java.util.Map" resultMap="BarPrice">
+	select a.* from bar_price a where 1=1 
+	limit 0,1 
+</select>
+
+<!--根据map参数查询bar_price数据-->
+<select id="findByMap" parameterType="java.util.Map" resultMap="BarPrice">
+	select * from bar_price  where 1=1 
+<if test="id!=null and id!=''">
+    and id=#{id} 
+</if>
+<if test="barId!=null and barId!=''">
+    and bar_id=#{barId} 
+</if>
+<if test="type!=null and type!=''">
+    and type=#{type} 
+</if>
+<if test="price!=null and price!=''">
+    and price=#{price} 
+</if>
+</select>
+
+<!--查询所有bar_price数据-->
+<select id="findAll" resultMap="BarPrice">
+	select * from bar_price 
+</select>
+
+<!--根据条件查询bar_price表数据-->
+<select id="queryCount" parameterType="java.util.Map" resultType="int">
+	select count(1) from bar_price  where 1=1  
+</select>
+
+
+</mapper>

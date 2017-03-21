@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.etsk.api.entity.domain.BarLocation">
+<resultMap type="com.fs.bar.entity.BarLocation" id="BarLocation">
+      <id column="id" property="id"/>
+      <id column="bar_id" property="barId"/>
+      <id column="province" property="province"/>
+      <id column="province_int" property="provinceInt"/>
+      <id column="city" property="city"/>
+      <id column="city_int" property="cityInt"/>
+      <id column="area" property="area"/>
+      <id column="area_int" property="areaInt"/>
+</resultMap><!--接口说明:新增bar_location数据-->
+<insert id="save" parameterType="BarLocation">
+	insert into bar_location(id,bar_id,province,province_int,city,city_int,area,area_int)values(#{id},#{barId},#{province},#{provinceInt},#{city},#{cityInt},#{area},#{areaInt})
+</insert>
+
+<!--接口说明:修改bar_location数据-->
+<update id="update" parameterType="BarLocation">
+	update bar_location set id=#{id},bar_id=#{barId},province=#{province},province_int=#{provinceInt},city=#{city},city_int=#{cityInt},area=#{area},area_int=#{areaInt} WHERE ID=#{id}
+</update>
+
+<!--接口说明:删除bar_location数据-->
+<delete id="deleteById" parameterType="int"> 
+	delete from TEACHER where ID=#{id}
+</delete>
+
+<!--根据map参数查询bar_location数据-->
+<select id="findOneByMap" parameterType="java.util.Map" resultMap="BarLocation">
+	select a.* from bar_location a where 1=1 
+	limit 0,1 
+</select>
+
+<!--根据map参数查询bar_location数据-->
+<select id="findByMap" parameterType="java.util.Map" resultMap="BarLocation">
+	select * from bar_location  where 1=1 
+<if test="id!=null and id!=''">
+    and id=#{id} 
+</if>
+<if test="barId!=null and barId!=''">
+    and bar_id=#{barId} 
+</if>
+<if test="province!=null and province!=''">
+    and province=#{province} 
+</if>
+<if test="provinceInt!=null and provinceInt!=''">
+    and province_int=#{provinceInt} 
+</if>
+<if test="city!=null and city!=''">
+    and city=#{city} 
+</if>
+<if test="cityInt!=null and cityInt!=''">
+    and city_int=#{cityInt} 
+</if>
+<if test="area!=null and area!=''">
+    and area=#{area} 
+</if>
+<if test="areaInt!=null and areaInt!=''">
+    and area_int=#{areaInt} 
+</if>
+</select>
+
+<!--查询所有bar_location数据-->
+<select id="findAll" resultMap="BarLocation">
+	select * from bar_location 
+</select>
+
+<!--根据条件查询bar_location表数据-->
+<select id="queryCount" parameterType="java.util.Map" resultType="int">
+	select count(1) from bar_location  where 1=1  
+</select>
+
+
+</mapper>

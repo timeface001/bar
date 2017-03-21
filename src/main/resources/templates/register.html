@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<title>Register</title>
+<link th:include="fragments/lib :: lib">
+
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Real Home  Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+</head>
+<body>
+<!--header-->
+<div th:include="fragments/header :: header(#{login.pre},#{register.suffix})"></div>
+<!--//-->	
+
+<!--//header-->
+<!--contact-->
+<div class="login-right">
+	<div class="container">
+		<h3 th:text="#{register}"></h3>
+		<div class="login-top">
+				<ul class="login-icons">
+					<li><a href="#" ><i class="facebook"> </i><span>Facebook</span></a></li>
+					<li><a href="#" class="twit"><i class="twitter"></i><span>Twitter</span></a></li>
+					<li><a href="#" class="go"><i class="google"></i><span>Google +</span></a></li>
+					<li><a href="#" class="in"><i class="linkedin"></i><span>Linkedin</span></a></li>
+					<div class="clearfix"> </div>
+				</ul>
+				<div class="form-info">
+					<form>
+						<input type="text"  id="nickname"  th:placeholder="#{register.nickname.placeholder}"  data-toggle="tooltip"  data-placement="auto left" title="不能为空"   >
+						<input type="text"  id="mobile"    th:placeholder="#{register.mobile.placeholder}" data-toggle="tooltip"  data-placement="auto left" title="不能为空"   >
+						<input type="password" id="password" th:placeholder="#{register.password.placeholder}" data-toggle="tooltip" data-placement="auto left" title="不能为空"  >
+						
+						 <label class="hvr-sweep-to-right">
+				           	<input type="button" id="signUp" th:value="#{register}" />
+				           </label>
+					</form>
+					<p>Already have a Real Home account? <a th:href="@{/login/toLogin}">Login</a></p>
+				</div>
+			<script type="text/javascript">
+				$(function () {
+
+                    $("#signUp").click(function () {
+
+
+						if(isNullOrEmpty($("#nickname").val())){
+							$("#nickname").tooltip('show');
+                            setTimeout(function(){$("#nickname").tooltip('destroy')},2000);
+							return;
+						}
+
+						if(isNullOrEmpty($("#mobile").val())){
+							$("#mobile").tooltip('show');
+							setTimeout(function(){$("#mobile").tooltip('destroy')},2000);
+							return;
+						}
+
+						if(isNullOrEmpty($("#password").val())){
+							$("#password").tooltip('show');
+							setTimeout(function(){$("#password").tooltip('destroy')},2000);
+							return;
+						}
+
+
+						//手机号唯一
+						$.ajax({url:"./../member/mobileExist",data:{mobile:$("#mobile").val()},success:function (data) {
+
+                            //手机号已存在
+						    if(!data.success){
+                                $("#mobile").attr("title","手机号已存在").tooltip('show');
+                                setTimeout(function(){$("#mobile").tooltip('destroy')},2000);
+                                $("#mobile").attr("title","不能为空");
+
+							 }else{
+						        //添加成功
+								$.ajax({url:"./../member/save",data:{
+								    username:$("#mobile").val(),nickname:$("#nickname").val(),password:$("#password").val(),type:0},type:"post",success:function (data) {
+
+                                       if(data.success){
+                                           swal({
+                                                   title: "",
+                                                   text: "注册成功！",
+                                                   type: "success",
+                                                   showCancelButton: false,
+                                                   closeOnConfirm: false,
+                                                   showConfirmButton:true,
+                                                   showLoaderOnConfirm: false,
+                                               },
+                                               function(){
+                                                   window.location.href="./../login/toLogin";
+
+                                               });
+
+
+									   }
+									
+                                }})
+							}
+
+                        }
+
+                        });
+
+
+                   })
+
+                })
+
+			</script>
+			
+	</div>
+</div>
+</div>
+<!--//contact-->
+<!--footer-->
+<div th:include="fragments/footer :: footer"></div>
+<!--//footer-->
+</body>
+</html>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fs.bar.dao.MemberMapper">
+<resultMap type="com.fs.bar.entity.Bar" id="Bar">
+      <id column="id" property="id"/>
+      <id column="name" property="name"/>
+      <id column="capacity" property="capacity"/>
+      <id column="status" property="status"/>
+      <id column="comments" property="comments"/>
+      <id column="level" property="level"/>
+      <id column="description" property="description"/>
+      <id column="address" property="address"/>
+      <id column="type" property="type"/>
+      <id column="phone" property="phone"/>
+      <id column="owner_id" property="ownerId"/>
+      <id column="create_id" property="createId"/>
+      <id column="create_time" property="createTime"/>
+</resultMap><!--接口说明:新增bar数据-->
+<insert id="save" parameterType="Bar">
+	insert into bar(name,capacity,status,comments,level,description,address,type,phone,owner_id,create_id,create_time,update_time)values(#{name},#{capacity},#{status},#{comments},#{level},#{description},#{address},#{type},#{phone},#{ownerId},#{createId},now(),now())
+</insert>
+
+<!--接口说明:修改bar数据-->
+<update id="update" parameterType="Bar">
+	update bar set id=#{id},name=#{name},capacity=#{capacity},status=#{status},comments=#{comments},level=#{level},description=#{description},address=#{address},type=#{type},phone=#{phone},owner_id=#{ownerId},create_id=#{createId},create_time=#{createTime} WHERE ID=#{id}
+</update>
+
+<!--接口说明:删除bar数据-->
+<delete id="deleteById" parameterType="int"> 
+	delete from TEACHER where ID=#{id}
+</delete>
+
+<!--根据map参数查询bar数据-->
+<select id="findOneByMap" parameterType="java.util.Map" resultMap="Bar">
+	select a.* from bar a where 1=1 
+	limit 0,1 
+</select>
+
+<!--根据map参数查询bar数据-->
+<select id="findByMap" parameterType="java.util.Map" resultMap="Bar">
+	select * from bar  where 1=1 
+<if test="id!=null and id!=''">
+    and id=#{id} 
+</if>
+<if test="name!=null and name!=''">
+    and name=#{name} 
+</if>
+<if test="capacity!=null and capacity!=''">
+    and capacity=#{capacity} 
+</if>
+<if test="status!=null and status!=''">
+    and status=#{status} 
+</if>
+<if test="comments!=null and comments!=''">
+    and comments=#{comments} 
+</if>
+<if test="level!=null and level!=''">
+    and level=#{level} 
+</if>
+<if test="description!=null and description!=''">
+    and description=#{description} 
+</if>
+<if test="address!=null and address!=''">
+    and address=#{address} 
+</if>
+<if test="type!=null and type!=''">
+    and type=#{type} 
+</if>
+<if test="phone!=null and phone!=''">
+    and phone=#{phone} 
+</if>
+<if test="ownerId!=null and ownerId!=''">
+    and owner_id=#{ownerId} 
+</if>
+<if test="createId!=null and createId!=''">
+    and create_id=#{createId} 
+</if>
+<if test="createTime!=null and createTime!=''">
+    and create_time=#{createTime} 
+</if>
+</select>
+
+<!--查询所有bar数据-->
+<select id="findAll" resultMap="Bar">
+	select * from bar 
+</select>
+
+<!--根据条件查询bar表数据-->
+<select id="queryCount" parameterType="java.util.Map" resultType="int">
+	select count(1) from bar  where 1=1  
+</select>
+
+
+</mapper>

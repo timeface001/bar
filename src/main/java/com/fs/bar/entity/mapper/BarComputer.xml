@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.etsk.api.entity.domain.BarComputer">
+<resultMap type="com.fs.bar.entity.BarComputer" id="BarComputer">
+      <id column="id" property="id"/>
+      <id column="cpu" property="cpu"/>
+      <id column="board" property="board"/>
+      <id column="memory" property="memory"/>
+      <id column="disk" property="disk"/>
+      <id column="solid_disk" property="solidDisk"/>
+      <id column="card" property="card"/>
+      <id column="power" property="power"/>
+      <id column="chassis" property="chassis"/>
+      <id column="keyboard" property="keyboard"/>
+      <id column="mouse" property="mouse"/>
+      <id column="bar_id" property="barId"/>
+</resultMap><!--接口说明:新增bar_computer数据-->
+<insert id="save" parameterType="BarComputer">
+	insert into bar_computer(id,cpu,board,memory,disk,solid_disk,card,power,chassis,keyboard,mouse,bar_id)values(#{id},#{cpu},#{board},#{memory},#{disk},#{solidDisk},#{card},#{power},#{chassis},#{keyboard},#{mouse},#{barId})
+</insert>
+
+<!--接口说明:修改bar_computer数据-->
+<update id="update" parameterType="BarComputer">
+	update bar_computer set id=#{id},cpu=#{cpu},board=#{board},memory=#{memory},disk=#{disk},solid_disk=#{solidDisk},card=#{card},power=#{power},chassis=#{chassis},keyboard=#{keyboard},mouse=#{mouse},bar_id=#{barId} WHERE ID=#{id}
+</update>
+
+<!--接口说明:删除bar_computer数据-->
+<delete id="deleteById" parameterType="int"> 
+	delete from TEACHER where ID=#{id}
+</delete>
+
+<!--根据map参数查询bar_computer数据-->
+<select id="findOneByMap" parameterType="java.util.Map" resultMap="BarComputer">
+	select a.* from bar_computer a where 1=1 
+	limit 0,1 
+</select>
+
+<!--根据map参数查询bar_computer数据-->
+<select id="findByMap" parameterType="java.util.Map" resultMap="BarComputer">
+	select * from bar_computer  where 1=1 
+<if test="id!=null and id!=''">
+    and id=#{id} 
+</if>
+<if test="cpu!=null and cpu!=''">
+    and cpu=#{cpu} 
+</if>
+<if test="board!=null and board!=''">
+    and board=#{board} 
+</if>
+<if test="memory!=null and memory!=''">
+    and memory=#{memory} 
+</if>
+<if test="disk!=null and disk!=''">
+    and disk=#{disk} 
+</if>
+<if test="solidDisk!=null and solidDisk!=''">
+    and solid_disk=#{solidDisk} 
+</if>
+<if test="card!=null and card!=''">
+    and card=#{card} 
+</if>
+<if test="power!=null and power!=''">
+    and power=#{power} 
+</if>
+<if test="chassis!=null and chassis!=''">
+    and chassis=#{chassis} 
+</if>
+<if test="keyboard!=null and keyboard!=''">
+    and keyboard=#{keyboard} 
+</if>
+<if test="mouse!=null and mouse!=''">
+    and mouse=#{mouse} 
+</if>
+<if test="barId!=null and barId!=''">
+    and bar_id=#{barId} 
+</if>
+</select>
+
+<!--查询所有bar_computer数据-->
+<select id="findAll" resultMap="BarComputer">
+	select * from bar_computer 
+</select>
+
+<!--根据条件查询bar_computer表数据-->
+<select id="queryCount" parameterType="java.util.Map" resultType="int">
+	select count(1) from bar_computer  where 1=1  
+</select>
+
+
+</mapper>

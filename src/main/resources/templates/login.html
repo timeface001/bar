@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Login</title>
+<link th:include="fragments/lib :: lib" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+</head>
+<body>
+
+
+<div th:include="fragments/header :: header(#{login.pre},'')"></div>
+
+<!--//header-->
+<!--contact-->
+<div class="login-right">
+	<div class="container">
+		<h3>Login</h3>
+		<div class="login-top">
+				<ul class="login-icons">
+					<li><a href="#" ><i class="facebook"> </i><span>Facebook</span></a></li>
+					<li><a href="#" class="twit"><i class="twitter"></i><span>Twitter</span></a></li>
+					<li><a href="#" class="go"><i class="google"></i><span>Google +</span></a></li>
+					<li><a href="#" class="in"><i class="linkedin"></i><span>Linkedin</span></a></li>
+					<div class="clearfix"> </div>
+				</ul>
+				<div class="form-info">
+					<form >
+						<input id="username" type="text" class="text" th:placeholder="#{login.username}" th:title="#{not.null}" required=""/>
+						<input id="password" type="password"  th:placeholder="#{login.password}" th:title="#{not.null}"  required=""/>
+						 <label class="hvr-sweep-to-right"/>
+				           	<input id="submit" type="button" th:value="#{login.submit}" />
+				           </label>
+					</form>
+					<script>
+						$(function () {
+                            $("#submit").click(function () {
+                                if(isNullOrEmpty($("#username").val())){
+                                    $("#username").tooltip('show');
+                                    setTimeout(function(){$("#username").tooltip('destroy')},2000);
+                                    return;
+                                }
+
+                                if(isNullOrEmpty($("#password").val())){
+                                    $("#password").tooltip('show');
+                                    setTimeout(function(){$("#password").tooltip('destroy')},2000);
+                                    return;
+                                }
+
+                                $.ajax({url:'./../login/login',data:{username:$("#username").val(),password:$("#password").val()},success:function (data) {
+                                    console.log(data);
+                                    if(data.success){
+                                          window.location.href="./../";
+									  }else{
+
+                                        toastr.options={
+                                            "closeButton": false,//是否配置关闭按钮
+                                            "debug": false,//是否开启debug模式
+                                            "newestOnTop": false,//新消息是否排在最上层
+                                            "progressBar": false,//是否显示进度条
+                                            "positionClass": "toast-bottom-center",//消息框的显示位置
+                                            "preventDuplicates": false,//是否阻止弹出多个消息框
+                                            "onclick": null,//点击回调函数
+                                            "showDuration": "300",
+                                            "hideDuration": "1000",
+                                            "timeOut": "1500",//1.5s后关闭消息框
+                                            "extendedTimeOut": "1000",
+                                            "showEasing": "swing",
+                                            "hideEasing": "linear",
+                                            "showMethod": "fadeIn",
+                                            "hideMethod": "fadeOut"
+                                        }
+
+                                          toastr.error(data.msg);
+									  }
+                                }});
+                            });
+                        })
+
+					</script>
+				</div>
+			<div class="create">
+				<h4>New To Real Home?</h4>
+				<a class="hvr-sweep-to-right" th:href="@{/login/toRegister}" th:text="#{register.create.account}"></a>
+				<div class="clearfix"> </div>
+			</div>
+	</div>
+</div>
+</div>
+<!--//contact-->
+<!--footer-->
+<div th:include="fragments/footer :: footer"></div>
+<!--//footer-->
+</body>
+</html>
