@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.fs</groupId>
-	<artifactId>wangbar</artifactId>
+	<artifactId>bar</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>wangbar</name>
+	<name>wangbar</name>。
 	<description>hefei wangbar collection</description>
 
 	<parent>
@@ -32,6 +32,11 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-redis</artifactId>
 		</dependency>
 
 		<dependency>
