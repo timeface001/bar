@@ -1,1201 +1,924 @@
-<!DOCTYPE html >
-<!--
-Template Name: Admin Lab Dashboard build with Bootstrap v2.3.1
-Template Version: 1.2
-Author: Mosaddek Hossain
-Website: http://thevectorlab.net/
--->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<!--[if IE 8]> <html lang="en" class="ie8" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
-<!-- BEGIN HEAD -->
 <head>
-	<meta charset="utf-8" />
-	<title> Admin Lab Dashboard</title>
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	<meta content="" name="description" />
-	<meta content="" name="author" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>H+ 后台主题UI框架 - 主页</title>
+
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+
+    <![endif]-->
 
     <link th:include="fragments/mlib :: mlib">
+
+    <link rel="shortcut icon" href="favicon.ico">
+
 </head>
-<!-- END HEAD -->
-<!-- BEGIN BODY -->
-<body class="fixed-top">
-	<!-- BEGIN HEADER -->
-	<div id="header" class="navbar navbar-inverse navbar-fixed-top">
-		<!-- BEGIN TOP NAVIGATION BAR -->
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<!-- BEGIN LOGO -->
-				<a class="brand" href="index.html">
-				    <img src="img/logo.png" alt="Admin Lab" />
-				</a>
-				<!-- END LOGO -->
-				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
-				<a class="btn btn-navbar collapsed" id="main_menu_trigger" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="arrow"></span>
-				</a>
-				<!-- END RESPONSIVE MENU TOGGLER -->
-				<div id="top_menu" class="nav notify-row">
-                    <!-- BEGIN NOTIFICATION -->
-					<ul class="nav top-menu">
-                        <!-- BEGIN SETTINGS -->
-                        <li class="dropdown">
-                            <a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Settings">
-                                <i class="icon-cog"></i>
-                            </a>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<div id="wrapper">
+    <!--左侧导航开始-->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="nav-close"><i class="fa fa-times-circle"></i>
+        </div>
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <span><img alt="image" class="img-circle" th:src="@{/img/profile_small.jpg}" src="img/profile_small.jpg" /></span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                               <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
+                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                                </span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
+                            </li>
+                            <li><a class="J_menuItem" th:href="@{./../member/profile}">个人资料</a>
+                            </li>
+                            <li><a class="J_menuItem" href="contacts.html">联系我们</a>
+                            </li>
+                            <li><a class="J_menuItem" href="mailbox.html">信箱</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="login.html">安全退出</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">H+
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-home"></i>
+                        <span class="nav-label">主页</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" th:href="@{/member/index_v2.html}" href="index_v1.html" data-index="0">主页示例一</a>
                         </li>
-                        <!-- END SETTINGS -->
-                        <!-- BEGIN INBOX DROPDOWN -->
-                        <li class="dropdown" id="header_inbox_bar">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-envelope-alt"></i>
-                                <span class="badge badge-important">5</span>
-                            </a>
-                            <ul class="dropdown-menu extended inbox">
-                                <li>
-                                    <p>You have 5 new messages</p>
+                        <li>
+                            <a class="J_menuItem" href="index_v2.html">主页示例二</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index_v3.html">主页示例三</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index_v4.html">主页示例四</a>
+                        </li>
+                        <li>
+                            <a href="index_v5.html" target="_blank">主页示例五</a>
+                        </li>
+                    </ul>
+
+                </li>
+                <li>
+                    <a class="J_menuItem" href="layouts.html"><i class="fa fa-columns"></i> <span class="nav-label">布局</span></a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa fa-bar-chart-o"></i>
+                        <span class="nav-label">统计图表</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="graph_echarts.html">百度ECharts</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_flot.html">Flot</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_morris.html">Morris.js</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_rickshaw.html">Rickshaw</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_peity.html">Peity</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_sparkline.html">Sparkline</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_metrics.html">图表组合</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">信箱 </span><span class="label label-warning pull-right">16</span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="mailbox.html">收件箱</a>
+                        </li>
+                        <li><a class="J_menuItem" href="mail_detail.html">查看邮件</a>
+                        </li>
+                        <li><a class="J_menuItem" href="mail_compose.html">写信</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">表单</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="form_basic.html">基本表单</a>
+                        </li>
+                        <li><a class="J_menuItem" href="form_validate.html">表单验证</a>
+                        </li>
+                        <li><a class="J_menuItem" href="form_advanced.html">高级插件</a>
+                        </li>
+                        <li><a class="J_menuItem" href="form_wizard.html">表单向导</a>
+                        </li>
+                        <li>
+                            <a href="#">文件上传 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="form_webuploader.html">百度WebUploader</a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									<span class="from">Dulal Khan</span>
-									<span class="time">Just now</span>
-									</span>
-									<span class="message">
-									    Hello, this is an example messages please check
-									</span>
-                                    </a>
+                                <li><a class="J_menuItem" href="form_file_upload.html">DropzoneJS</a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									<span class="from">Rafiqul Islam</span>
-									<span class="time">10 mins</span>
-									</span>
-									<span class="message">
-									 Hi, Mosaddek Bhai how are you ?
-									</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									<span class="from">Sumon Ahmed</span>
-									<span class="time">3 hrs</span>
-									</span>
-									<span class="message">
-									    This is awesome dashboard templates
-									</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									<span class="from">Dulal Khan</span>
-									<span class="time">Just now</span>
-									</span>
-									<span class="message">
-									    Hello, this is an example messages please check
-									</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">See all messages</a>
+                                <li><a class="J_menuItem" href="form_avatar.html">头像裁剪上传</a>
                                 </li>
                             </ul>
                         </li>
-                        <!-- END INBOX DROPDOWN -->
-						<!-- BEGIN NOTIFICATION DROPDOWN -->
-						<li class="dropdown" id="header_notification_bar">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-
-							<i class="icon-bell-alt"></i>
-							<span class="badge badge-warning">7</span>
-							</a>
-							<ul class="dropdown-menu extended notification">
-								<li>
-									<p>You have 7 new notifications</p>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-important"><i class="icon-bolt"></i></span>
-									Server #3 overloaded.
-									<span class="small italic">34 mins</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-warning"><i class="icon-bell"></i></span>
-									Server #10 not respoding.
-									<span class="small italic">1 Hours</span>
-									</a>
-								</li>
+                        <li>
+                            <a href="#">编辑器 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="form_editors.html">富文本编辑器</a>
+                                </li>
+                                <li><a class="J_menuItem" href="form_simditor.html">simditor</a>
+                                </li>
+                                <li><a class="J_menuItem" href="form_markdown.html">MarkDown编辑器</a>
+                                </li>
+                                <li><a class="J_menuItem" href="code_editor.html">代码编辑器</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="suggest.html">搜索自动补全</a>
+                        </li>
+                        <li><a class="J_menuItem" href="layerdate.html">日期选择器layerDate</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">页面</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="contacts.html">联系人</a>
+                        </li>
+                        <li><a class="J_menuItem" href="profile.html">个人资料</a>
+                        </li>
+                        <li>
+                            <a href="#">项目管理 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="projects.html">项目</a>
+                                </li>
+                                <li><a class="J_menuItem" href="project_detail.html">项目详情</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="teams_board.html">团队管理</a>
+                        </li>
+                        <li><a class="J_menuItem" href="social_feed.html">信息流</a>
+                        </li>
+                        <li><a class="J_menuItem" href="clients.html">客户管理</a>
+                        </li>
+                        <li><a class="J_menuItem" href="file_manager.html">文件管理器</a>
+                        </li>
+                        <li><a class="J_menuItem" href="calendar.html">日历</a>
+                        </li>
+                        <li>
+                            <a href="#">博客 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="blog.html">文章列表</a>
+                                </li>
+                                <li><a class="J_menuItem" href="article.html">文章详情</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="faq.html">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="#">时间轴 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="timeline.html">时间轴</a>
+                                </li>
+                                <li><a class="J_menuItem" href="timeline_v2.html">时间轴v2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="pin_board.html">标签墙</a>
+                        </li>
+                        <li>
+                            <a href="#">单据 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="invoice.html">单据</a>
+                                </li>
+                                <li><a class="J_menuItem" href="invoice_print.html">单据打印</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="search_results.html">搜索结果</a>
+                        </li>
+                        <li><a class="J_menuItem" href="forum_main.html">论坛</a>
+                        </li>
+                        <li>
+                            <a href="#">即时通讯 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="chat_view.html">聊天窗口</a>
+                                </li>
+                                <li><a class="J_menuItem" href="webim.html">layIM</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">登录注册相关 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a href="login.html" target="_blank">登录页面</a>
+                                </li>
+                                <li><a href="login_v2.html" target="_blank">登录页面v2</a>
+                                </li>
+                                <li><a href="register.html" target="_blank">注册页面</a>
+                                </li>
+                                <li><a href="lockscreen.html" target="_blank">登录超时</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="404.html">404页面</a>
+                        </li>
+                        <li><a class="J_menuItem" href="500.html">500页面</a>
+                        </li>
+                        <li><a class="J_menuItem" href="empty_page.html">空白页</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">UI元素</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="typography.html">排版</a>
+                        </li>
+                        <li>
+                            <a href="#">字体图标 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="#">
-                                        <span class="label label-important"><i class="icon-bolt"></i></span>
-                                        Database overloaded 24%.
-                                        <span class="small italic">4 hrs</span>
-                                    </a>
+                                    <a class="J_menuItem" href="fontawesome.html">Font Awesome</a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <span class="label label-success"><i class="icon-plus"></i></span>
-                                        New user registered.
-                                        <span class="small italic">Just now</span>
-                                    </a>
+                                    <a class="J_menuItem" href="glyphicons.html">Glyphicon</a>
                                 </li>
-								<li>
-									<a href="#">
-									<span class="label label-info"><i class="icon-bullhorn"></i></span>
-									Application error.
-									<span class="small italic">10 mins</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">See all notifications</a>
-								</li>
-							</ul>
-						</li>
-						<!-- END NOTIFICATION DROPDOWN -->
+                                <li>
+                                    <a class="J_menuItem" href="iconfont.html">阿里巴巴矢量图标库</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">拖动排序 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="draggable_panels.html">拖动面板</a>
+                                </li>
+                                <li><a class="J_menuItem" href="agile_board.html">任务清单</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="buttons.html">按钮</a>
+                        </li>
+                        <li><a class="J_menuItem" href="tabs_panels.html">选项卡 &amp; 面板</a>
+                        </li>
+                        <li><a class="J_menuItem" href="notifications.html">通知 &amp; 提示</a>
+                        </li>
+                        <li><a class="J_menuItem" href="badges_labels.html">徽章，标签，进度条</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="grid_options.html">栅格</a>
+                        </li>
+                        <li><a class="J_menuItem" href="plyr.html">视频、音频</a>
+                        </li>
+                        <li>
+                            <a href="#">弹框插件 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="layer.html">Web弹层组件layer</a>
+                                </li>
+                                <li><a class="J_menuItem" href="modal_window.html">模态窗口</a>
+                                </li>
+                                <li><a class="J_menuItem" href="sweetalert.html">SweetAlert</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">树形视图 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="jstree.html">jsTree</a>
+                                </li>
+                                <li><a class="J_menuItem" href="tree_view.html">Bootstrap Tree View</a>
+                                </li>
+                                <li><a class="J_menuItem" href="nestable_list.html">nestable</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="J_menuItem" href="toastr_notifications.html">Toastr通知</a>
+                        </li>
+                        <li><a class="J_menuItem" href="diff.html">文本对比</a>
+                        </li>
+                        <li><a class="J_menuItem" href="spinners.html">加载动画</a>
+                        </li>
+                        <li><a class="J_menuItem" href="widgets.html">小部件</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">表格</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="table_basic.html">基本表格</a>
+                        </li>
+                        <li><a class="J_menuItem" href="table_data_tables.html">DataTables</a>
+                        </li>
+                        <li><a class="J_menuItem" href="table_jqgrid.html">jqGrid</a>
+                        </li>
+                        <li><a class="J_menuItem" href="table_foo_table.html">Foo Tables</a>
+                        </li>
+                        <li><a class="J_menuItem" href="table_bootstrap.html">Bootstrap Table
+                            <span class="label label-danger pull-right">推荐</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">相册</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="basic_gallery.html">基本图库</a>
+                        </li>
+                        <li><a class="J_menuItem" href="carousel.html">图片切换</a>
+                        </li>
+                        <li><a class="J_menuItem" href="layerphotos.html">layer相册</a>
+                        </li>
+                        <li><a class="J_menuItem" href="blueimp.html">Blueimp相册</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="J_menuItem" href="css_animation.html"><i class="fa fa-magic"></i> <span class="nav-label">CSS动画</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-cutlery"></i> <span class="nav-label">工具 </span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="form_builder.html">表单构建器</a>
+                        </li>
+                    </ul>
+                </li>
 
-					</ul>
+            </ul>
+        </div>
+    </nav>
+    <!--左侧导航结束-->
+    <!--右侧部分开始-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                        <div class="form-group">
+                            <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">
+                        </div>
+                    </form>
                 </div>
-                    <!-- END  NOTIFICATION -->
-                <div class="top-nav ">
-                    <ul class="nav pull-right top-menu" >
-                        <!-- BEGIN SUPPORT -->
-                        <li class="dropdown mtop5">
-
-                            <a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Chat">
-                                <i class="icon-comments-alt"></i>
-                            </a>
-                        </li>
-                        <li class="dropdown mtop5">
-                            <a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Help">
-                                <i class="icon-headphones"></i>
-                            </a>
-                        </li>
-                        <!-- END SUPPORT -->
-						<!-- BEGIN USER LOGIN DROPDOWN -->
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="img/avatar1_small.jpg" alt="">
-                                <span class="username">Mosaddek Hossain</span>
-							<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="icon-user"></i> My Profile</a></li>
-								<li><a href="#"><i class="icon-tasks"></i> My Tasks</a></li>
-								<li><a href="#"><i class="icon-calendar"></i> Calendar</a></li>
-								<li class="divider"></li>
-								<li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
-							</ul>
-						</li>
-						<!-- END USER LOGIN DROPDOWN -->
-					</ul>
-					<!-- END TOP NAVIGATION MENU -->
-				</div>
-			</div>
-		</div>
-		<!-- END TOP NAVIGATION BAR -->
-	</div>
-	<!-- END HEADER -->
-	<!-- BEGIN CONTAINER -->
-	<div id="container" class="row-fluid">
-		<!-- BEGIN SIDEBAR -->
-		<div id="sidebar" class="nav-collapse collapse">
-			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-			<div class="sidebar-toggler hidden-phone"></div>
-			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-
-			<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
-			<div class="navbar-inverse">
-				<form class="navbar-search visible-phone">
-					<input type="text" class="search-query" placeholder="Search" />
-				</form>
-			</div>
-			<!-- END RESPONSIVE QUICK SEARCH FORM -->
-			<!-- BEGIN SIDEBAR MENU -->
-			<ul class="sidebar-menu">
-				<li class="has-sub active">
-					<a href="javascript:;" class="">
-					    <span class="icon-box"> <i class="icon-dashboard"></i></span> Dashboard
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub">
-                        <li class="active"><a class="" href="index.html">Dashboard 1</a></li>
-                        <li><a class="" href="index_2.html">Dashboard 2</a></li>
-
-                    </ul>
-				</li>
-				<li class="has-sub">
-					<a href="javascript:;" class="">
-					    <span class="icon-box"> <i class="icon-book"></i></span> UI Elements
-					    <span class="arrow"></span>
-					</a>
-					<ul class="sub">
-						<li><a class="" href="ui_elements_general.html">General</a></li>
-						<li><a class="" href="ui_elements_buttons.html">Buttons</a></li>
-
-						<li><a class="" href="ui_elements_tabs_accordions.html">Tabs & Accordions</a></li>
-						<li><a class="" href="ui_elements_typography.html">Typography</a></li>
-						<li><a class="" href="tree_view.html">Tree View</a></li>
-						<li><a class="" href="nestable.html">Nestable List</a></li>
-					</ul>
-				</li>
-				<li class="has-sub">
-					<a href="javascript:;" class="">
-					<span class="icon-box"><i class="icon-cogs"></i></span> Components
-					<span class="arrow"></span>
-					</a>
-					<ul class="sub">
-                        <li><a class="" href="calendar.html">Calendar</a></li>
-                        <li><a class="" href="data_table.html">Data Table</a></li>
-                        <li><a class="" href="grids.html">Grids</a></li>
-                        <li><a class="" href="charts.html">Visual Charts</a></li>
-                        <li><a class="" href="messengers.html">Conversations</a></li>
-                        <li><a class="" href="gallery.html"> Gallery</a></li>
-                    </ul>
-				</li>
-                <li class="has-sub">
-                    <a href="javascript:;" class="">
-                        <span class="icon-box"><i class="icon-tasks"></i></span> Form Stuff
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><a class="" href="form_layout.html">Form Layouts</a></li>
-                        <li><a class="" href="form_component.html">Form Components</a></li>
-                        <li><a class="" href="form_wizard.html">Form Wizard</a></li>
-                        <li><a class="" href="form_validation.html">Form Validation</a></li>
-                        <li><a class="" href="dropzone.html">Dropzone File Upload </a></li>
-                    </ul>
-                </li>
-				<li class="has-sub">
-	               <a href="javascript:;" class="">
-	               <span class="icon-box"><i class="icon-fire"></i></span> Icons
-	               <span class="arrow"></span>
-	               </a>
-	               <ul class="sub">
-	                  <li><a class="" href="font_awesome.html">Font Awesome</a></li>
-                      <li><a class="" href="glyphicons.html">Glyphicons</a></li>
-	               </ul>
-	            </li>
-				<li class="has-sub">
-					<a href="javascript:;" class="">
-					<span class="icon-box"><i class="icon-map-marker"></i></span> Maps
-					<span class="arrow"></span>
-					</a>
-					<ul class="sub">
-						<li><a class="" href="maps_google.html"> Google Maps</a></li>
-						<li><a class="" href="maps_vector.html"> Vector Maps</a></li>
-					</ul>
-				</li>
-				<li class="has-sub">
-					<a href="javascript:;" class="">
-					<span class="icon-box"><i class="icon-file-alt"></i></span> Sample Pages
-					<span class="arrow"></span>
-					</a>
-                    <ul class="sub">
-                        <li><a class="" href="blank.html">Blank Page</a></li>
-                        <li><a class="" href="sidebar_closed.html">Sidebar Closed Page</a></li>
-                        <li><a class="" href="coming_soon.html">Coming Soon</a></li>
-                        <li><a class="" href="blog.html">Blog</a></li>
-                        <li><a class="" href="about_us.html">About Us</a></li>
-                        <li><a class="" href="contact_us.html">Contact Us</a></li>
-                    </ul>
-				</li>
-                <li class="has-sub">
-                    <a href="javascript:;" class="">
-                        <span class="icon-box"><i class="icon-glass"></i></span> Extra
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><a class="" href="lock.html">Lock Screen</a></li>
-                        <li><a class="" href="profile.html">Profile</a></li>
-                        <li><a class="" href="invoice.html">Invoice</a></li>
-                        <li><a class="" href="pricing_tables.html">Pricing Tables</a></li>
-                        <li><a class="" href="faq.html">FAQ</a></li>
-                        <li><a class="" href="404.html">404 Error</a></li>
-                        <li><a class="" href="500.html">500 Error</a></li>
-                    </ul>
-                </li>
-				<li><a class="" href="login.html"><span class="icon-box"><i class="icon-user"></i></span> Login Page</a></li>
-			</ul>
-			<!-- END SIDEBAR MENU -->
-		</div>
-		<!-- END SIDEBAR -->
-		<!-- BEGIN PAGE -->
-		<div id="main-content">
-			<!-- BEGIN PAGE CONTAINER-->
-			<div class="container-fluid">
-				<!-- BEGIN PAGE HEADER-->
-				<div class="row-fluid">
-					<div class="span12">
-						<!-- BEGIN THEME CUSTOMIZER-->
-						<div id="theme-change" class="hidden-phone">
-							<i class="icon-cogs"></i>
-							<span class="settings">
-                                <span class="text">Theme:</span>
-                                <span class="colors">
-                                    <span class="color-default" data-style="default"></span>
-                                    <span class="color-gray" data-style="gray"></span>
-                                    <span class="color-purple" data-style="purple"></span>
-                                    <span class="color-navy-blue" data-style="navy-blue"></span>
-                                </span>
-							</span>
-						</div>
-						<!-- END THEME CUSTOMIZER-->
-						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-						<h3 class="page-title">
-							Dashboard
-							<small> General Information </small>
-						</h3>
-						<ul class="breadcrumb">
-							<li>
-                                <a href="#"><i class="icon-home"></i></a><span class="divider">&nbsp;</span>
-							</li>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                            <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages">
+                            <li class="m-t-xs">
+                                <div class="dropdown-messages-box">
+                                    <a href="profile.html" class="pull-left">
+                                        <img alt="image" class="img-circle" th:src="@{/img/a7.jpg}" >
+                                    </a>
+                                    <div class="media-body">
+                                        <small class="pull-right">46小时前</small>
+                                        <strong>小四</strong> 这个在日本投降书上签字的军官，建国后一定是个不小的干部吧？
+                                        <br>
+                                        <small class="text-muted">3天前 2014.11.8</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
                             <li>
-                                <a href="#">Admin Lab</a> <span class="divider">&nbsp;</span>
+                                <div class="dropdown-messages-box">
+                                    <a href="profile.html" class="pull-left">
+                                        <img alt="image" class="img-circle" th:src="@{/img/a4.jpg}">
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="pull-right text-navy">25小时前</small>
+                                        <strong>国民岳父</strong> 如何看待“男子不满自己爱犬被称为狗，刺伤路人”？——这人比犬还凶
+                                        <br>
+                                        <small class="text-muted">昨天</small>
+                                    </div>
+                                </div>
                             </li>
-							<li><a href="#">Dashboard</a><span class="divider-last">&nbsp;</span></li>
-                            <li class="pull-right search-wrap">
-                                <form class="hidden-phone">
-                                    <div class="search-input-area">
-                                        <input id=" " class="search-query" type="text" placeholder="Search">
-                                        <i class="icon-search"></i>
-                                    </div>
-                                </form>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="text-center link-block">
+                                    <a class="J_menuItem" href="mailbox.html">
+                                        <i class="fa fa-envelope"></i> <strong> 查看所有消息</strong>
+                                    </a>
+                                </div>
                             </li>
-						</ul>
-						<!-- END PAGE TITLE & BREADCRUMB-->
-					</div>
-				</div>
-				<!-- END PAGE HEADER-->
-				<!-- BEGIN PAGE CONTENT-->
-				<div id="page" class="dashboard">
-                    <!-- BEGIN OVERVIEW STATISTIC BLOCKS-->
-                    <div class="row-fluid circle-state-overview">
-                        <div class="span2 responsive" data-tablet="span3" data-desktop="span2">
-                            <div class="circle-stat block">
-                                <div class="visual">
-                                    <div class="circle-state-icon">
-                                        <i class="icon-user turquoise-color"></i>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="mailbox.html">
+                                    <div>
+                                        <i class="fa fa-envelope fa-fw"></i> 您有16条未读消息
+                                        <span class="pull-right text-muted small">4分钟前</span>
                                     </div>
-                                    <input class="knob" data-width="100" data-height="100" data-displayPrevious=true  data-thickness=".2" value="35" data-fgColor="#4CC5CD" data-bgColor="#ddd">
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="profile.html">
+                                    <div>
+                                        <i class="fa fa-qq fa-fw"></i> 3条新回复
+                                        <span class="pull-right text-muted small">12分钟钱</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="text-center link-block">
+                                    <a class="J_menuItem" href="notifications.html">
+                                        <strong>查看所有 </strong>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
                                 </div>
-                                <div class="details">
-                                    <div class="number">+33</div>
-                                    <div class="title">New Users</div>
-                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="hidden-xs">
+                        <a href="index_v1.html" class="J_menuItem" data-index="0"><i class="fa fa-cart-arrow-down"></i> 购买</a>
+                    </li>
+                    <li class="dropdown hidden-xs">
+                        <a class="right-sidebar-toggle" aria-expanded="false">
+                            <i class="fa fa-tasks"></i> 主题
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row content-tabs">
+            <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
+            </button>
+            <nav class="page-tabs J_menuTabs">
+                <div class="page-tabs-content">
+                    <a href="javascript:;" class="active J_menuTab" data-id="index_v1.html">首页</a>
+                </div>
+            </nav>
+            <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
+            </button>
+            <div class="btn-group roll-nav roll-right">
+                <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
 
+                </button>
+                <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                    <li class="J_tabShowActive"><a>定位当前选项卡</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                    </li>
+                    <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                    </li>
+                </ul>
+            </div>
+            <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+        </div>
+        <div class="row J_mainContent" id="content-main">
+            <div th:include="member/index_v2 :: index_v2"></div>
+
+        </div>
+        <div class="footer">
+            <div class="pull-right">&copy; 2014-2015 <a href="http://www.zi-han.net/" target="_blank">zihan's blog</a>
+            </div>
+        </div>
+    </div>
+    <!--右侧部分结束-->
+    <!--右侧边栏开始-->
+    <div id="right-sidebar">
+        <div class="sidebar-container">
+
+            <ul class="nav nav-tabs navs-3">
+
+                <li class="active">
+                    <a data-toggle="tab" href="#tab-1">
+                        <i class="fa fa-gear"></i> 主题
+                    </a>
+                </li>
+                <li class=""><a data-toggle="tab" href="#tab-2">
+                    通知
+                </a>
+                </li>
+                <li><a data-toggle="tab" href="#tab-3">
+                    项目进度
+                </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                    <div class="sidebar-title">
+                        <h3> <i class="fa fa-comments-o"></i> 主题设置</h3>
+                        <small><i class="fa fa-tim"></i> 你可以从这里选择和预览主题的布局和样式，这些设置会被保存在本地，下次打开的时候会直接应用这些设置。</small>
+                    </div>
+                    <div class="skin-setttings">
+                        <div class="title">主题设置</div>
+                        <div class="setings-item">
+                            <span>收起左侧菜单</span>
+                            <div class="switch">
+                                <div class="onoffswitch">
+                                    <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="collapsemenu">
+                                    <label class="onoffswitch-label" for="collapsemenu">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        <div class="span2 responsive" data-tablet="span3" data-desktop="span2">
-                            <div class="circle-stat block">
-                                <div class="visual">
-                                    <div class="circle-state-icon">
-                                        <i class="icon-tags red-color"></i>
-                                    </div>
-                                    <input class="knob" data-width="100" data-height="100" data-displayPrevious=true  data-thickness=".2" value="65" data-fgColor="#e17f90" data-bgColor="#ddd"/>
-                                </div>
-                                <div class="details">
-                                    <div class="number">987$</div>
-                                    <div class="title">Sales</div>
-                                </div>
+                        <div class="setings-item">
+                            <span>固定顶部</span>
 
+                            <div class="switch">
+                                <div class="onoffswitch">
+                                    <input type="checkbox" name="fixednavbar" class="onoffswitch-checkbox" id="fixednavbar">
+                                    <label class="onoffswitch-label" for="fixednavbar">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
+                        <div class="setings-item">
+                                <span>
+                        固定宽度
+                    </span>
 
-
-                        <div class="span2 responsive" data-tablet="span3" data-desktop="span2">
-                            <div class="circle-stat block">
-                                <div class="visual">
-                                    <div class="circle-state-icon">
-                                        <i class="icon-shopping-cart green-color"></i>
-                                    </div>
-                                    <input class="knob" data-width="100" data-height="100" data-displayPrevious=true  data-thickness=".2" value="30" data-fgColor="#a8c77b" data-bgColor="#ddd"/>
+                            <div class="switch">
+                                <div class="onoffswitch">
+                                    <input type="checkbox" name="boxedlayout" class="onoffswitch-checkbox" id="boxedlayout">
+                                    <label class="onoffswitch-label" for="boxedlayout">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
                                 </div>
-                                <div class="details">
-                                    <div class="number">+320</div>
-                                    <div class="title">New Orders</div>
-                                </div>
-
                             </div>
                         </div>
-
-                        <div class="span2 responsive" data-tablet="span3" data-desktop="span2">
-                            <div class="circle-stat block">
-                                <div class="visual">
-                                    <div class="circle-state-icon">
-                                        <i class="icon-comments-alt gray-color"></i>
-                                    </div>
-                                    <input class="knob"  data-width="100" data-height="100" data-displayPrevious=true  data-thickness=".2" value="15"  data-fgColor="#b9baba" data-bgColor="#ddd"/>
-                                </div>
-                                <div class="details">
-                                    <div class="number">387</div>
-                                    <div class="title">Comments</div>
-                                </div>
-
-                            </div>
+                        <div class="title">皮肤选择</div>
+                        <div class="setings-item default-skin nb">
+                                <span class="skin-name ">
+                         <a href="#" class="s-skin-0">
+                             默认皮肤
+                         </a>
+                    </span>
                         </div>
-
-                        <div class="span2 responsive" data-tablet="span3" data-desktop="span2">
-                            <div class="circle-stat block">
-                                <div class="visual">
-                                    <div class="circle-state-icon">
-                                        <i class="icon-eye-open purple-color"></i>
-                                    </div>
-                                    <input class="knob" data-width="100" data-height="100" data-displayPrevious=true  data-thickness=".2" value="45" data-fgColor="#c8abdb" data-bgColor="#ddd"/>
-                                </div>
-                                <div class="details">
-                                    <div class="number">+987</div>
-                                    <div class="title">Unique Visitor</div>
-                                </div>
-
-                            </div>
+                        <div class="setings-item blue-skin nb">
+                                <span class="skin-name ">
+                        <a href="#" class="s-skin-1">
+                            蓝色主题
+                        </a>
+                    </span>
                         </div>
-
-
-                        <div class="span2 responsive" data-tablet="span3" data-desktop="span2">
-                            <div class="circle-stat block">
-                                <div class="visual">
-                                    <div class="circle-state-icon">
-                                        <i class="icon-bar-chart blue-color"></i>
-                                    </div>
-                                    <input class="knob" data-width="100" data-height="100" data-displayPrevious=true  data-thickness=".2" value="25" data-fgColor="#93c4e4" data-bgColor="#ddd"/>
-                                </div>
-                                <div class="details">
-                                    <div class="number">478</div>
-                                    <div class="title">Updates</div>
-                                </div>
-
-                            </div>
+                        <div class="setings-item yellow-skin nb">
+                                <span class="skin-name ">
+                        <a href="#" class="s-skin-3">
+                            黄色/紫色主题
+                        </a>
+                    </span>
                         </div>
                     </div>
-                    <!-- END OVERVIEW STATISTIC BLOCKS-->
+                </div>
+                <div id="tab-2" class="tab-pane">
 
-					<div class="row-fluid">
-						<div class="span8">
-							<!-- BEGIN SITE VISITS PORTLET-->
-							<div class="widget">
-								<div class="widget-title">
-									<h4><i class="icon-bar-chart"></i> Line Chart</h4>
-									<span class="tools">
-									<a href="javascript:;" class="icon-chevron-down"></a>
-									<a href="javascript:;" class="icon-remove"></a>
-									</span>
-								</div>
-								<div class="widget-body">
-									<div id="site_statistics_loading">
-										<img src="img/loading.gif" alt="loading" />
-									</div>
-									<div id="site_statistics_content" class="hide">
-										<div id="site_statistics" class="chart"></div>
-									</div>
-								</div>
-							</div>
-							<!-- END SITE VISITS PORTLET-->
-						</div>
-                        <div class="span4">
-                            <!-- BEGIN SERVER LOAD PORTLET-->
-                            <div class="widget">
-                                <div class="widget-title">
-                                    <h4><i class="icon-umbrella"></i> Live Chart</h4>
-									<span class="tools">
-									<a href="javascript:;" class="icon-chevron-down"></a>
-									<a href="javascript:;" class="icon-remove"></a>
-									</span>
-                                </div>
-                                <div class="widget-body">
-                                    <div id="load_statistics_loading">
-                                        <img src="img/loading.gif" alt="loading" />
-                                    </div>
-                                    <div id="load_statistics_content" class="hide" style="margin: 0px 0 20px 0">
-                                        <div id="load_statistics" class="chart" style="height: 280px"></div>
+                    <div class="sidebar-title">
+                        <h3> <i class="fa fa-comments-o"></i> 最新通知</h3>
+                        <small><i class="fa fa-tim"></i> 您当前有10条未读信息</small>
+                    </div>
+
+                    <div>
+
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" th:src="@{/img/a1.jpg}">
+
+                                    <div class="m-t-xs">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- END SERVER LOAD PORTLET-->
-                        </div>
+                                <div class="media-body">
 
-					</div>
-					<!-- BEGIN SQUARE STATISTIC BLOCKS-->
-                    <div class="square-state">
-                        <div class="row-fluid">
-                            <a class="icon-btn span2" href="#">
-                                <i class="icon-group"></i>
-                                <div>Users</div>
-                                <span class="badge badge-important">2</span>
-                            </a>
-                            <a class="icon-btn span2" href="#">
-                                <i class="icon-barcode"></i>
-                                <div>Products</div>
-                                <span class="badge badge-success">4</span>
-                            </a>
-                            <a class="icon-btn span2" href="#">
-                                <i class="icon-bar-chart"></i>
-                                <div>Reports</div>
-                            </a>
-                            <a class="icon-btn span2" href="#">
-                                <i class="icon-calendar"></i>
-                                <div>Calendar</div>
-                            </a>
-                            <a class="icon-btn span2" href="#">
-                                <i class="icon-sitemap"></i>
-                                <div>Categories</div>
-                            </a>
-                            <a class="icon-btn span2" href="#">
-                                <i class="icon-tasks"></i>
-                                <div>Task</div>
-                                <span class="badge badge-important">3</span>
+                                    据天津日报报道：瑞海公司董事长于学伟，副董事长董社轩等10人在13日上午已被控制。
+                                    <br>
+                                    <small class="text-muted">今天 4:21</small>
+                                </div>
                             </a>
                         </div>
-                        <div class="row-fluid">
-                            <a class="icon-btn span2" href="#">
-                                <i class="icon-envelope"></i>
-                                <div>Inbox</div>
-                                <span class="badge badge-info">12</span>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" th:src="@{/img/a2.jpg}">
+                                </div>
+                                <div class="media-body">
+                                    HCY48之音乐大魔王会员专属皮肤已上线，快来一键换装拥有他，宣告你对华晨宇的爱吧！
+                                    <br>
+                                    <small class="text-muted">昨天 2:45</small>
+                                </div>
                             </a>
-                            <a class="icon-btn span2" href="#">
-                                <i class="icon-bullhorn"></i>
-                                <div>Notification</div>
-                                <span class="badge badge-warning">3</span>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" th:src="@{/img/a3.jpg}">
+
+                                    <div class="m-t-xs">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    写的好！与您分享
+                                    <br>
+                                    <small class="text-muted">昨天 1:10</small>
+                                </div>
                             </a>
-                            <a class="icon-btn span2" href="#">
-                                <i class="icon-plane"></i>
-                                <div>Projects</div>
-                                <span class="badge badge-info">21</span>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" th:src="@{/img/a4.jpg}">
+                                </div>
+
+                                <div class="media-body">
+                                    国外极限小子的炼成！这还是亲生的吗！！
+                                    <br>
+                                    <small class="text-muted">昨天 8:37</small>
+                                </div>
                             </a>
-                            <a class="icon-btn span2" href="#">
-                                <i class="icon-money"></i>
-                                <div>Finance</div>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" th:src="@{/img/a8.jpg}" >
+                                </div>
+                                <div class="media-body">
+
+                                    一只流浪狗被收留后，为了减轻主人的负担，坚持自己觅食，甚至......有些东西，可能她比我们更懂。
+                                    <br>
+                                    <small class="text-muted">今天 4:21</small>
+                                </div>
                             </a>
-                            <a class="icon-btn span2" href="#">
-                                <i class="icon-thumbs-up"></i>
-                                <div>Feedback</div>
-                                <span class="badge badge-info">2</span>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" th:src="@{/img/a7.jpg}">
+                                </div>
+                                <div class="media-body">
+                                    这哥们的新视频又来了，创意杠杠滴，帅炸了！
+                                    <br>
+                                    <small class="text-muted">昨天 2:45</small>
+                                </div>
                             </a>
-                            <a class="icon-btn span2" href="#">
-                                <i class="icon-wrench"></i>
-                                <div>Settings</div>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" th:src="@{/img/a3.jpg}">
+
+                                    <div class="m-t-xs">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    最近在补追此剧，特别喜欢这段表白。
+                                    <br>
+                                    <small class="text-muted">昨天 1:10</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" th:src="@{/img/a4.jpg}">
+                                </div>
+                                <div class="media-body">
+                                    我发起了一个投票 【你认为下午大盘会翻红吗？】
+                                    <br>
+                                    <small class="text-muted">星期一 8:37</small>
+                                </div>
                             </a>
                         </div>
                     </div>
-                    <!-- END SQUARE STATISTIC BLOCKS-->
-					<div class="row-fluid">
-                        <div class="span12">
-                            <!-- BEGIN RECENT ORDERS PORTLET-->
-                            <div class="widget">
-                                <div class="widget-title">
-                                    <h4><i class="icon-tags"></i> Recent Order List</h4>
-                                        <span class="tools">
-                                        <a href="javascript:;" class="icon-chevron-down"></a>
-                                        <a href="javascript:;" class="icon-remove"></a>
-                                        </span>
-                                </div>
-                                <div class="widget-body">
-                                    <table class="table table-striped table-bordered table-advance table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th><i class="icon-leaf"></i> <span class="hidden-phone">From</span></th>
-                                            <th><i class="icon-user"></i> <span class="hidden-phone ">Contact</span></th>
-                                            <th><i class="icon-tags"> </i><span class="hidden-phone">Amount</span></th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td class="highlight">
-                                                <div class="info"></div>
-                                                <a href="#">ABC</a>
-                                            </td>
-                                            <td>Mosaddek Hossain</td>
-                                            <td>120.00$
-                                                <span class="label label-success label-mini">Paid</span>
-                                                <a href="#" class="btn btn-mini visible-phone hidden-tablet">View</a>
-                                            </td>
-                                            <td><a href="#" class="btn btn-mini hidden-phone hidden-tablet">View</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="highlight">
-                                                <div class="warning"></div>
-                                                <a href="#">Lorem</a>
-                                            </td>
-                                            <td>Dulal khan</td>
-                                            <td>2000.50$
-                                                <span class="label label-success label-mini">Paid</span>
-                                                <a href="#" class="btn btn-mini visible-phone hidden-tablet">View</a> </td>
-                                            <td><a href="#" class="btn btn-mini hidden-phone hidden-tablet">View</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="highlight">
-                                                <div class="success"></div>
-                                                <a href="#">Dolor imit</a>
-                                            </td>
-                                            <td>Rafiqul Ismal</td>
-                                            <td>490.50$
-                                                <span class="label label-warning label-mini">Pending</span>
-                                                <a href="#" class="btn btn-mini visible-phone hidden-tablet">View</a> </td>
-                                            <td><a href="#" class="btn btn-mini hidden-phone hidden-tablet">View</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="highlight">
-                                                <div class="important"></div>
-                                                <a href="#">ABC</a>
-                                            </td>
-                                            <td>Sumon Ahmed</td>
-                                            <td>1000.00$ <a href="#" class="btn btn-mini visible-phone hidden-tablet">View</a> </td>
-                                            <td><a href="#" class="btn btn-mini hidden-phone hidden-tablet">View</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="highlight">
-                                                <div class="success"></div>
-                                                <a href="#">Vector lab</a>
-                                            </td>
-                                            <td>Mosaddek</td>
-                                            <td>4890.60$
-                                                <span class="label label-warning label-mini">Paid</span>
-                                                <a href="#" class="btn btn-mini visible-phone hidden-tablet">View</a> </td>
-                                            <td><a href="#" class="btn btn-mini hidden-phone hidden-tablet">View</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="highlight">
-                                                <div class="warning"></div>
-                                                <a href="#">Ipsum</a>
-                                            </td>
-                                            <td>Rafiqul Islam</td>
-                                            <td>3201.60$
-                                                <span class="label label-success label-mini">Pending</span>
-                                                <a href="#" class="btn btn-mini visible-phone hidden-tablet">View</a> </td>
-                                            <td><a href="#" class="btn btn-mini hidden-phone hidden-tablet">View</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="highlight">
-                                                <div class="important"></div>
-                                                <a href="#">ABC</a>
-                                            </td>
-                                            <td>Dulal Khan</td>
-                                            <td>500.00$ <a href="#" class="btn btn-mini visible-phone hidden-tablet">View</a> </td>
-                                            <td><a href="#" class="btn btn-mini hidden-phone hidden-tablet">View</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="highlight">
-                                                <div class="warning"></div>
-                                                <a href="#">Vector lab</a>
-                                            </td>
-                                            <td>Mosaddek Hossain</td>
-                                            <td>5501.00$
-                                                <span class="label label-success label-mini">Paid</span>
-                                                <a href="#" class="btn btn-mini visible-phone hidden-tablet">View</a> </td>
-                                            <td><a href="#" class="btn btn-mini hidden-phone hidden-tablet">View</a></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="space7"></div>
-                                    <div class="clearfix">
-                                        <a href="#" class="btn btn-mini pull-right">All Orders</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END RECENT ORDERS PORTLET-->
-                        </div>
 
-					</div>
-					<div class="row-fluid">
+                </div>
+                <div id="tab-3" class="tab-pane">
 
-						<div class="span7">
-							<!-- BEGIN CHAT PORTLET-->
-							<div class="widget" id="chats">
-								<div class="widget-title">
-									<h4><i class="icon-comments-alt"></i> Chats</h4>
-									<span class="tools">
-									<a href="javascript:;" class="icon-chevron-down"></a>
-									<a href="javascript:;" class="icon-remove"></a>
-									</span>
-								</div>
-								<div class="widget-body">
-                                    <div class="timeline-messages">
-                                            <!-- Comment -->
-                                            <div class="msg-time-chat">
-                                                <a class="message-img" href="#"><img alt="" src="img/avatar1.jpg" class="avatar"></a>
-                                                <div class="message-body msg-in">
-                                                    <div class="text">
-                                                        <p class="attribution"><a href="#">Mosaddek Hossain</a> at 1:55pm, 13th April 2013</p>
-                                                        <p>Hello, How are you brother?</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /comment -->
-
-                                            <!-- Comment -->
-                                            <div class="msg-time-chat">
-                                                <a class="message-img" href="#"><img alt="" src="img/avatar2.jpg" class="avatar"></a>
-                                                <div class="message-body msg-out">
-                                                    <div class="text">
-                                                        <p class="attribution"> <a href="#">Dulal Khan</a> at 2:01pm, 13th April 2013</p>
-                                                        <p>I'm Fine, Thank you. What about you? How is going on?</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /comment -->
-
-                                            <!-- Comment -->
-                                            <div class="msg-time-chat">
-                                                <a class="message-img" href="#"><img alt="" src="img/avatar1.jpg" class="avatar"></a>
-                                                <div class="message-body msg-in">
-                                                    <div class="text">
-                                                        <p class="attribution"><a href="#">Mosaddek Hossain</a> at 2:03pm, 13th April 2013</p>
-                                                        <p>Yeah I'm fine too. Everything is going fine here.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /comment -->
-
-                                            <!-- Comment -->
-                                            <div class="msg-time-chat">
-                                                <a class="message-img" href="#"><img alt="" src="img/avatar2.jpg" class="avatar"></a>
-                                                <div class="message-body msg-out">
-                                                    <div class="text">
-                                                        <p class="attribution"><a href="#">Dulal Khan</a> at 2:05pm, 13th April 2013</p>
-                                                        <p>well good to know that. anyway how much time you need to done your task?</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /comment -->
-                                        </div>
-									<div class="chat-form">
-										<div class="input-cont">
-											<input type="text" placeholder="Type a message here..." />
-										</div>
-										<div class="btn-cont">
-											<a href="javascript:;" class="btn btn-primary">Send</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- END CHAT PORTLET-->
-						</div>
-                        <div class="span5">
-                            <!-- BEGIN NOTIFICATIONS PORTLET-->
-                            <div class="widget">
-                                <div class="widget-title">
-                                    <h4><i class="icon-bell"></i> Notifications</h4>
-									<span class="tools">
-									<a href="javascript:;" class="icon-chevron-down"></a>
-									<a href="javascript:;" class="icon-remove"></a>
-									</span>
-                                </div>
-                                <div class="widget-body">
-                                    <ul class="item-list scroller padding" data-height="365" data-always-visible="1">
-                                        <li>
-                                            <span class="label label-success"><i class="icon-bell"></i></span>
-                                            <span>New user registered.</span>
-                                            <span class="small italic">Just now</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-success"><i class="icon-bell"></i></span>
-                                            <span>New order received.</span>
-                                            <span class="small italic">15 mins ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-warning"><i class="icon-bullhorn"></i></span>
-                                            <span>Alerting a user account balance.</span>
-                                            <span class="small italic">2 hrs ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-important"><i class="icon-bolt"></i></span>
-                                            <span>Alerting administrators staff.</span>
-                                            <span class="small italic">11 hrs ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-important"><i class="icon-bolt"></i></span>
-                                            <span>Messages are not sent to users.</span>
-                                            <span class="small italic">14 hrs ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-warning"><i class="icon-bullhorn"></i></span>
-                                            <span>Web server #12 failed to relosd.</span>
-                                            <span class="small italic">2 days ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-success"><i class="icon-bell"></i></span>
-                                            <span>New order received.</span>
-                                            <span class="small italic">15 mins ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-warning"><i class="icon-bullhorn"></i></span>
-                                            <span>Alerting a user account balance.</span>
-                                            <span class="small italic">2 hrs ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-important"><i class="icon-bolt"></i></span>
-                                            <span>Alerting administrators staff.</span>
-                                            <span class="small italic">11 hrs ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-important"><i class="icon-bolt"></i></span>
-                                            <span>Messages are not sent to users.</span>
-                                            <span class="small italic">14 hrs ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-warning"><i class="icon-bullhorn"></i></span>
-                                            <span>Web server #12 failed to relosd.</span>
-                                            <span class="small italic">2 days ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-success"><i class="icon-bell"></i></span>
-                                            <span>New order received.</span>
-                                            <span class="small italic">15 mins ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-warning"><i class="icon-bullhorn"></i></span>
-                                            <span>Alerting a user account balance.</span>
-                                            <span class="small italic">2 hrs ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-important"><i class="icon-bolt"></i></span>
-                                            <span>Alerting administrators support staff.</span>
-                                            <span class="small italic">11 hrs ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-important"><i class="icon-bolt"></i></span>
-                                            <span>Messages are not sent to users.</span>
-                                            <span class="small italic">14 hrs ago</span>
-                                        </li>
-                                        <li>
-                                            <span class="label label-warning"><i class="icon-bullhorn"></i></span>
-                                            <span>Web server #12 failed to relosd.</span>
-                                            <span class="small italic">2 days ago</span>
-                                        </li>
-                                    </ul>
-                                    <div class="space5"></div>
-                                    <a href="#" class="pull-right">View all notifications</a>
-                                    <div class="clearfix no-top-space no-bottom-space"></div>
-                                </div>
-                            </div>
-                            <!-- END NOTIFICATIONS PORTLET-->
-                        </div>
-
-
+                    <div class="sidebar-title">
+                        <h3> <i class="fa fa-cube"></i> 最新任务</h3>
+                        <small><i class="fa fa-tim"></i> 您当前有14个任务，10个已完成</small>
                     </div>
-                    <div class="row-fluid">
-                        <div class="span6">
-                            <!-- BEGIN PROGRESS BARS PORTLET-->
-                            <div class="widget">
-                                <div class="widget-title">
-                                    <h4><i class="icon-reorder"></i> Progress Bars</h4>
-                                        <span class="tools">
-                                        <a href="javascript:;" class="icon-chevron-down"></a>
-                                        <a href="javascript:;" class="icon-remove"></a>
-                                        </span>
-                                </div>
-                                <div class="widget-body">
-                                    <div class="progress">
-                                        <div style="width: 40%;" class="bar"></div>
-                                    </div>
-                                    <div class="progress progress-success">
-                                        <div style="width: 60%;" class="bar"></div>
-                                    </div>
-                                    <div class="progress progress-warning">
-                                        <div style="width: 80%;" class="bar"></div>
-                                    </div>
-                                    <div class="progress progress-danger">
-                                        <div style="width: 45%;" class="bar"></div>
-                                    </div>
-                                    <div class="progress">
-                                        <div style="width: 15%;" class="bar bar-success"></div>
-                                        <div style="width: 40%;" class="bar bar-warning"></div>
-                                        <div style="width: 27%;" class="bar bar-danger"></div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div style="width: 25%;" class="bar"></div>
-                                    </div>
-                                    <div class="progress progress-striped progress-success active">
-                                        <div style="width: 40%;" class="bar"></div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div style="width: 15%;" class="bar bar-success"></div>
-                                        <div style="width: 40%;" class="bar bar-warning"></div>
-                                        <div style="width: 27%;" class="bar bar-danger"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END PROGRESS BARS PORTLET-->
-                        </div>
-                        <div class="span6">
-                            <!-- BEGIN ALERTS PORTLET-->
-                            <div class="widget">
-                                <div class="widget-title">
-                                    <h4><i class="icon-bell-alt"></i> Alerts</h4>
-									<span class="tools">
-									<a href="javascript:;" class="icon-chevron-down"></a>
-									<a href="javascript:;" class="icon-remove"></a>
-									</span>
-                                </div>
-                                <div class="widget-body">
-                                    <div class="alert">
-                                        <button class="close" data-dismiss="alert">×</button>
-                                        <strong>Warning!</strong> Your monthly traffic is reaching limit.
-                                    </div>
-                                    <div class="alert alert-success">
-                                        <button class="close" data-dismiss="alert">×</button>
-                                        <strong>Success!</strong> The page has been added.
-                                    </div>
-                                    <div class="alert alert-info">
-                                        <button class="close" data-dismiss="alert">×</button>
-                                        <strong>Info!</strong> You have 198 unread messages.
-                                    </div>
-                                    <div class="alert alert-error">
-                                        <button class="close" data-dismiss="alert">×</button>
-                                        <strong>Error!</strong> The daily cronjob has failed.
-                                    </div>
-                                    <span class="space5"></span>
-                                </div>
-                            </div>
-                            <!-- END ALERTS PORTLET-->
-                        </div>
-                    </div>
-					<div class="row-fluid">
-						<div class="span8 responsive" data-tablet="span8 fix-margin" data-desktop="span8">
-							<!-- BEGIN CALENDAR PORTLET-->
-							<div class="widget">
-								<div class="widget-title">
-									<h4><i class="icon-calendar"></i> Calendar</h4>
-									<span class="tools">
-									<a href="javascript:;" class="icon-chevron-down"></a>
-									<a href="javascript:;" class="icon-remove"></a>
-									</span>
-								</div>
-								<div class="widget-body">
-									<div id="calendar" class="has-toolbar"></div>
-								</div>
-							</div>
-							<!-- END CALENDAR PORTLET-->
-						</div>
-                        <div class="span4 responsive" data-tablet="span4 fix-margin" data-desktop="span4">
-                            <!-- BEGIN TODO_LIST PORTLET-->
-                            <div class="widget">
-                                <div class="widget-title">
-                                    <h4><i class="icon-check"></i> To Do List</h4>
-                                        <span class="tools">
-                                        <a href="javascript:;" class="icon-chevron-down"></a>
-                                        <a href="javascript:;" class="icon-remove"></a>
-                                        </span>
-                                </div>
-                                <div class="widget-body">
-                                    <ul class="todo-list">
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <a href=""> Weekly Meeting.</a>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <span class="label label-success"><i class="icon-bell"></i>Today</span>
-                                                    <span class="actions">
-                                                        <a href="#" class="icon"><i class="icon-ok"></i></a>
-                                                        <a href="#" class="icon"><i class="icon-remove"></i></a>
-                                                    </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <a href="">Monthly Status Update.</a>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <span class="label label-default"><i class="icon-bell"></i>12.00PM</span>
-                                                    <span class="actions">
-                                                        <a href="#" class="icon"><i class="icon-ok"></i></a>
-                                                        <a href="#" class="icon"><i class="icon-remove"></i></a>
-                                                    </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <a href="">Upgrage server OS.</a>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <span class="label label-success"><i class="icon-bell"></i>4 March</span>
-                                                <span class="actions">
-                                                    <a href="#" class="icon"><i class="icon-ok"></i></a>
-                                                    <a href="#" class="icon"><i class="icon-remove"></i></a>
-                                                </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <a href="">Weekly technical support report.</a>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <span class="label label-success"><i class="icon-bell"></i>2 Jan</span>
-                                                    <span class="actions">
-                                                        <a href="#" class="icon"><i class="icon-ok"></i></a>
-                                                        <a href="#" class="icon"><i class="icon-remove"></i></a>
-                                                    </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <a href=""> Project materials.</a>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <span class="label label-warning"><i class="icon-bell"></i>09 Feb</span>
-                                                <span class="actions">
-                                                    <a href="#" class="icon"><i class="icon-ok"></i></a>
-                                                    <a href="#" class="icon"><i class="icon-remove"></i></a>
-                                                </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <a href="">Project Status Update.</a>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <span class="label label-important"><i class="icon-bell"></i>4.30PM</span>
-                                                    <span class="actions">
-                                                        <a href="#" class="icon"><i class="icon-ok"></i></a>
-                                                        <a href="#" class="icon"><i class="icon-remove"></i></a>
-                                                    </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <a href=""> Anual Project Meeting.</a>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <span class="label label-important"><i class="icon-bell"></i>Today</span>
-                                                    <span class="actions">
-                                                        <a href="#" class="icon"><i class="icon-ok"></i></a>
-                                                        <a href="#" class="icon"><i class="icon-remove"></i></a>
-                                                    </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <a href="">Prepare project materials.</a>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <span class="label label-warning"><i class="icon-bell"></i>3 May</span>
-                                                <span class="actions">
-                                                    <a href="#" class="icon"><i class="icon-ok"></i></a>
-                                                    <a href="#" class="icon"><i class="icon-remove"></i></a>
-                                                </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <a href="">Update salary status.</a>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <span class="label label-reverse"><i class="icon-bell"></i>1 June</span>
-                                                    <span class="actions">
-                                                        <a href="#" class="icon"><i class="icon-ok"></i></a>
-                                                        <a href="#" class="icon"><i class="icon-remove"></i></a>
-                                                    </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <a href="">Update Task Status.</a>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <span class="label label-reverse"><i class="icon-bell"></i>3 April</span>
-                                                    <span class="actions">
-                                                        <a href="#" class="icon"><i class="icon-ok"></i></a>
-                                                        <a href="#" class="icon"><i class="icon-remove"></i></a>
-                                                    </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <a href="">Project Status Report.</a>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <span class="label label-important"><i class="icon-bell"></i>10.00PM</span>
-                                                    <span class="actions">
-                                                        <a href="#" class="icon"><i class="icon-ok"></i></a>
-                                                        <a href="#" class="icon"><i class="icon-remove"></i></a>
-                                                    </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <a href="">Update project rates.</a>
-                                                </div>
-                                            </div>
-                                            <div class="col2">
-                                                <span class="label label-reverse"><i class="icon-bell"></i>28 April</span>
-                                                    <span class="actions">
-                                                        <a href="#" class="icon"><i class="icon-ok"></i></a>
-                                                        <a href="#" class="icon"><i class="icon-remove"></i></a>
-                                                    </span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <a href="#" class="pull-right">View all todo list</a>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                            <!-- END TODO_LIST PORTLET-->
-                        </div>
-					</div>
-				</div>
-				<!-- END PAGE CONTENT-->
-			</div>
-			<!-- END PAGE CONTAINER-->
-		</div>
-		<!-- END PAGE -->
-	</div>
-	<!-- END CONTAINER -->
-	<!-- BEGIN FOOTER -->
-	<div id="footer">
-		2013 &copy; Admin Lab Dashboard.
-		<div class="span pull-right">
-			<span class="go-top"><i class="icon-arrow-up"></i></span>
-		</div>
-	</div>
-	<!-- END FOOTER -->
-	<!-- BEGIN JAVASCRIPTS -->
-	<!-- Load javascripts at bottom, this will reduce page load time -->
 
-	<script>
-		jQuery(document).ready(function() {
-			// initiate layout and plugins
-			App.setMainPage(true);
-			App.init();
-		});
-	</script>
-	<!-- END JAVASCRIPTS -->
+                    <ul class="sidebar-list">
+                        <li>
+                            <a href="#">
+                                <div class="small pull-right m-t-xs">9小时以后</div>
+                                <h4>市场调研</h4> 按要求接收教材；
+
+                                <div class="small">已完成： 22%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 22%;" class="progress-bar progress-bar-warning"></div>
+                                </div>
+                                <div class="small text-muted m-t-xs">项目截止： 4:00 - 2015.10.01</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small pull-right m-t-xs">9小时以后</div>
+                                <h4>可行性报告研究报上级批准 </h4> 编写目的编写本项目进度报告的目的在于更好的控制软件开发的时间,对团队成员的 开发进度作出一个合理的比对
+
+                                <div class="small">已完成： 48%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 48%;" class="progress-bar"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small pull-right m-t-xs">9小时以后</div>
+                                <h4>立项阶段</h4> 东风商用车公司 采购综合综合查询分析系统项目进度阶段性报告武汉斯迪克科技有限公司
+
+                                <div class="small">已完成： 14%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 14%;" class="progress-bar progress-bar-info"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-primary pull-right">NEW</span>
+                                <h4>设计阶段</h4>
+                                <!--<div class="small pull-right m-t-xs">9小时以后</div>-->
+                                项目进度报告(Project Progress Report)
+                                <div class="small">已完成： 22%</div>
+                                <div class="small text-muted m-t-xs">项目截止： 4:00 - 2015.10.01</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small pull-right m-t-xs">9小时以后</div>
+                                <h4>拆迁阶段</h4> 科研项目研究进展报告 项目编号: 项目名称: 项目负责人:
+
+                                <div class="small">已完成： 22%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 22%;" class="progress-bar progress-bar-warning"></div>
+                                </div>
+                                <div class="small text-muted m-t-xs">项目截止： 4:00 - 2015.10.01</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small pull-right m-t-xs">9小时以后</div>
+                                <h4>建设阶段 </h4> 编写目的编写本项目进度报告的目的在于更好的控制软件开发的时间,对团队成员的 开发进度作出一个合理的比对
+
+                                <div class="small">已完成： 48%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 48%;" class="progress-bar"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small pull-right m-t-xs">9小时以后</div>
+                                <h4>获证开盘</h4> 编写目的编写本项目进度报告的目的在于更好的控制软件开发的时间,对团队成员的 开发进度作出一个合理的比对
+
+                                <div class="small">已完成： 14%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 14%;" class="progress-bar progress-bar-info"></div>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--右侧边栏结束-->
+    <!--mini聊天窗口开始-->
+    <div class="small-chat-box fadeInRight animated">
+
+        <div class="heading" draggable="true">
+            <small class="chat-date pull-right">
+                2015.9.1
+            </small> 与 Beau-zihan 聊天中
+        </div>
+
+        <div class="content">
+
+            <div class="left">
+                <div class="author-name">
+                    Beau-zihan <small class="chat-date">
+                    10:02
+                </small>
+                </div>
+                <div class="chat-message active">
+                    你好
+                </div>
+
+            </div>
+            <div class="right">
+                <div class="author-name">
+                    游客
+                    <small class="chat-date">
+                        11:24
+                    </small>
+                </div>
+                <div class="chat-message">
+                    你好，请问H+有帮助文档吗？
+                </div>
+            </div>
+            <div class="left">
+                <div class="author-name">
+                    Beau-zihan
+                    <small class="chat-date">
+                        08:45
+                    </small>
+                </div>
+                <div class="chat-message active">
+                    有，购买的H+源码包中有帮助文档，位于docs文件夹下
+                </div>
+            </div>
+            <div class="right">
+                <div class="author-name">
+                    游客
+                    <small class="chat-date">
+                        11:24
+                    </small>
+                </div>
+                <div class="chat-message">
+                    那除了帮助文档还提供什么样的服务？
+                </div>
+            </div>
+            <div class="left">
+                <div class="author-name">
+                    Beau-zihan
+                    <small class="chat-date">
+                        08:45
+                    </small>
+                </div>
+                <div class="chat-message active">
+                    1.所有源码(未压缩、带注释版本)；
+                    <br> 2.说明文档；
+                    <br> 3.终身免费升级服务；
+                    <br> 4.必要的技术支持；
+                    <br> 5.付费二次开发服务；
+                    <br> 6.授权许可；
+                    <br> ……
+                    <br>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="form-chat">
+            <div class="input-group input-group-sm">
+                <input type="text" class="form-control"> <span class="input-group-btn"> <button
+                    class="btn btn-primary" type="button">发送
+                </button> </span>
+            </div>
+        </div>
+
+    </div>
+    <div id="small-chat">
+        <span class="badge badge-warning pull-right">5</span>
+        <a class="open-small-chat">
+            <i class="fa fa-comments"></i>
+
+        </a>
+    </div>
+</div>
+
 </body>
-<!-- END BODY -->
+
 </html>
