@@ -38,10 +38,15 @@ public class MemberController {
         return memberService.mobileExist(mobile);
     }
 
-    @RequestMapping("home")
+    @RequestMapping("/home")
     public String home()
     {
         return "/member/index";
+    }
+
+    @RequestMapping("/profile")
+    public String profile(){
+       return "member/profile";
     }
 
 
