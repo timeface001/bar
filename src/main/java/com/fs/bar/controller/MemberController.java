@@ -41,12 +41,19 @@ public class MemberController {
     @RequestMapping("/home")
     public String home()
     {
-        return "/member/index";
+        return "/member/home";
     }
 
     @RequestMapping("/profile")
     public String profile(){
-       return "member/profile";
+
+
+        return "member/profile";
+    }
+
+    @RequestMapping("/index")
+    public String index(){
+        return "member/index";
     }
 
 

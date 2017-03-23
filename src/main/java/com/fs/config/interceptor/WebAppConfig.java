@@ -2,9 +2,11 @@ package com.fs.config.interceptor;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.ResourceUtils;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
@@ -19,7 +21,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new ConstantHandler()).addPathPatterns("/**");
+        registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(localeChangeInterceptor());
     }
 
@@ -44,6 +46,17 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     }
 
 
+    /**
+     * 资源处理
+     * @param registry
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+        registry.addResourceHandler("/member/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+"/templates/");
+        registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+"/static/",ResourceUtils.CLASSPATH_URL_PREFIX+"/templates/");
+        super.addResourceHandlers(registry);
+    }
 
 
 

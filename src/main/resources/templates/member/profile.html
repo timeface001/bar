@@ -11,11 +11,7 @@
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
 
-    <link rel="shortcut icon" href="favicon.ico">
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+    <link rel="shortcut icon" href="favicon.ico"> <link th:include="fragments/mlib2 :: mlib2">
 
 </head>
 
@@ -29,7 +25,7 @@
                 </div>
                 <div>
                     <div class="ibox-content no-padding border-left-right">
-                        <img alt="image" class="img-responsive" src="img/profile_big.jpg">
+                        <img alt="image" class="img-responsive" th:src="${session.member.getAvatar()}">
                     </div>
                     <div class="ibox-content profile-content">
                         <h4><strong>Beaut-zihan</strong></h4>

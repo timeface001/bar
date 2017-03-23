@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by fengsong on 2017/3/9.
  */
 
-public class ConstantHandler implements HandlerInterceptor {
+public class AuthInterceptor implements HandlerInterceptor {
 
 
 
@@ -32,6 +32,9 @@ public class ConstantHandler implements HandlerInterceptor {
 
         //获取返回对象的国际化信息
         //System.out.print(JSON.toJSONString(response));
+        if(request.getRequestURI().contains("member")&&request.getSession().getAttribute("member")==null){
+            response.sendRedirect("../login/toLogin");
+        }
 
     }
 
