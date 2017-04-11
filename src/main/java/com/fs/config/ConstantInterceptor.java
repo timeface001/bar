@@ -41,7 +41,6 @@ public class ConstantInterceptor {
      */
     @Around("controllerMethodPointcut()") //指定拦截器规则；也可以直接把“execution(* com.xjj.........)”写进这里
     public Object Interceptor(ProceedingJoinPoint pjp) {
-        long beginTime = System.currentTimeMillis();
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod(); //获取被拦截的方法
 
@@ -65,11 +64,11 @@ public class ConstantInterceptor {
                 allParams.add(map);
             } else if (arg instanceof HttpServletRequest) {
                 HttpServletRequest request = (HttpServletRequest) arg;
-                if (isLoginRequired(method)) {
+                /*if (isLoginRequired(method)) {
                     if (!isLogin(request)) {
                         //result = new JsonResult(ResultCode.NOT_LOGIN, "该操作需要登录！去登录吗？\n\n（不知道登录账号？请联系老许。）", null);
                     }
-                }
+                }*/
 
                 //获取query string 或 posted form data参数
                 Map<String, String[]> paramMap = request.getParameterMap();

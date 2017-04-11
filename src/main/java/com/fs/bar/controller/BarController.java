@@ -24,6 +24,12 @@ public class BarController {
     }
 
 
+    @RequestMapping("toAdd")
+    public String toAdd(){
+        return "addBar";
+    }
+
+
 
 
 }

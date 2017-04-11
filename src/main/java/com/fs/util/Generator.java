@@ -14,10 +14,10 @@ import java.util.Map.Entry;
 /**
  * 根据数据库生成代码
  */
-public class Generator {
+public final class Generator {
     static String packageName = "com.fs.bar.entity";
-    static String javaFilePackage = "F:\\git-workspace\\wangbar\\src\\main\\java\\com\\fs\\bar\\entity\\";
-    static String xmlFilePackage = "F:\\git-workspace\\wangbar\\src\\main\\java\\com\\fs\\bar\\entity\\mapper\\";
+    static String javaFilePackage = "F:\\bar\\src\\main\\java\\com\\fs\\bar\\entity\\";
+    static String xmlFilePackage = "F:\\bar\\src\\main\\java\\com\\fs\\bar\\entity\\mapper\\";
     static String delPrefix = "";
     static String url = "jdbc:mysql://60.205.220.63:3306/wbar?"
             + "user=root&password=feng123D&useUnicode=true&characterEncoding=utf-8&useSSL=false&noAccessToProcedureBodies=true";
@@ -115,6 +115,7 @@ public class Generator {
                     javaWriter.write(getSetMethods);
                     javaWriter.write("}");
                     javaWriter.flush();
+                    javaWriter.close();
                 }
 
 
@@ -129,6 +130,7 @@ public class Generator {
                     xmlWriter.newLine();
                     xmlWriter.write("</mapper>");
                     xmlWriter.flush();
+                    xmlWriter.close();
                 }
             }
 
@@ -282,7 +284,7 @@ public class Generator {
     }
 
     public static String getClassName(String tableName) {
-        String name = new String(tableName).replace(delPrefix, "");
+        String name = tableName.replace(delPrefix, "");
         if (name.contains("_")) {
             return getClassName(name.substring(0, name.indexOf("_"))) + getClassName(name.substring(name.indexOf("_") + 1));
         } else {
@@ -292,6 +294,6 @@ public class Generator {
     }
 
     public static void main(String[] args) {
-        generateBeanAndXml(null);
+        generateBeanAndXml("dict");
     }
 }
