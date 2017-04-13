@@ -12,29 +12,34 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AuthInterceptor implements HandlerInterceptor {
 
+    org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(AuthInterceptor.class);
 
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        //打印请求参数信息
+        logger.info("REQUEST_URL:---" + request.getRequestURI() + "----");
+        logger.info("REQUEST_PARAMS:---" + request.getParameterMap() + "----");
         return true;
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
-        if(modelAndView==null){
-            modelAndView=new ModelAndView();
+        if (modelAndView == null) {
+            modelAndView = new ModelAndView();
 
         }
 
 
-        modelAndView.addObject("basePath","http://localhost:8008/bar");
+        modelAndView.addObject("basePath", "http://localhost:8008/bar");
 
         //获取返回对象的国际化信息
         //System.out.print(JSON.toJSONString(response));
-        if(request.getRequestURI().contains("member")&&request.getSession().getAttribute("member")==null){
+ /*       if(request.getRequestURI().contains("member")&&request.getSession().getAttribute("member")==null){
             response.sendRedirect("../login/toLogin");
-        }
+        }*/
+
 
     }
 

@@ -1,5 +1,7 @@
 package com.fs.bar.controller;
 
+import com.fs.bar.exchange.request.BarSaveRequest;
+import com.fs.bar.service.BarService;
 import com.fs.bar.service.DictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,9 @@ public class BarController {
     @Autowired
     private DictService dictService;
 
+    @Autowired
+    private BarService barService;
+
     @RequestMapping("/")
     public String index(HttpServletRequest request, Model modelMap) {
 
@@ -33,6 +38,17 @@ public class BarController {
     public String toAdd(HttpServletRequest request) {
         request.setAttribute("barOpts", dictService.barTypeOpts());
         return "addBar";
+    }
+
+    /**
+     * 网吧新增
+     * @return
+     */
+    @RequestMapping("save")
+    public String save(BarSaveRequest request)
+    {
+
+        return "";
     }
 
 

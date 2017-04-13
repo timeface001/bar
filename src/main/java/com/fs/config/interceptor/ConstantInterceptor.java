@@ -1,4 +1,4 @@
-package com.fs.config;
+package com.fs.config.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import org.aspectj.lang.ProceedingJoinPoint;

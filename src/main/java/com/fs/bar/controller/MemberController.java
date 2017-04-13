@@ -26,7 +26,12 @@ public class MemberController {
     @RequestMapping("/save")
     public @ResponseBody BaseResponse save(@Valid Member member){
 
-        memberService.save(member);
+        try {
+            memberService.save(member);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseUtils.generate().failed();
+        }
         return ResponseUtils.generate().successful();
     }
 

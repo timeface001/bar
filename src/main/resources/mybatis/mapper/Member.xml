@@ -9,7 +9,7 @@
 </resultMap>
 
 <insert id="save" parameterType="com.fs.bar.entity.Member">
-	insert into member(username,password,nickname,avatar,status,type,create_time,update_time)values(#{username},#{password},#{nickname},#{avatar},0,#{type},now(),now())
+	insert into member(username,password,nickname,avatar,status,type,create_time,update_time,uid,salt)values(#{username},#{password},#{nickname},#{avatar},0,#{type},now(),now(),#{uid},#{salt})
 </insert>
 
 <!--接口说明:修改member数据-->

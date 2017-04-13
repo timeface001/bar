@@ -12,6 +12,9 @@
     <script type="text/javascript" th:src="@{/js/distpicker.data.js}" ></script>
     <script type="text/javascript" th:src="@{/js/distpicker.js}" ></script>
 
+    <script type="text/javascript" th:src="@{/js/fileinput.js}" ></script>
+    <link  rel="stylesheet" th:href="@{/css/fileinput.css}"/>
+    <script type="text/javascript" th:src="@{/js/zh.js}" ></script>
 
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,21 +23,21 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
-<body>
+<body class=" pre-scrollable    ">
 <!--header-->
 <div th:include="fragments/header :: header(发现,'')"></div>
 <!--//header-->
 <!--contact-->
-<div class="privacy">
+<div class="privacy" >
     <div class="container">
         <h3>发现网吧</h3>
 
 
-        <form class="form-horizontal" role="form">
+        <form id="form" class="form-horizontal" role="form" method="post">
             <div class="form-group">
                 <label for="firstname" class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="firstname" placeholder="请输入网吧名称">
+                    <input type="text" class="form-control" name="name" id="firstname" placeholder="请输入网吧名称"  />
                 </div>
             </div>
             <div class="form-group form-inline">
@@ -43,8 +46,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div data-toggle="distpicker">
                         <select class="form-control" data-province="安徽省" disabled="disabled"></select>
                         <select class="form-control" data-city="合肥市" disabled="disabled"></select>
-                        <select class="form-control"></select>
-                        <input type="text" class="form-control" id="addDetail" placeholder="请输入地址详细" >
+                        <select class="form-control" name="area"></select>
+                        <input type="text" class="form-control" name="addDetail" id="addDetail" placeholder="请输入地址详细" >
                     </div>
                 </div>
             </div>
@@ -52,13 +55,86 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="form-group">
                 <label  class="col-sm-2 control-label">类型</label>
                 <div class="col-sm-10">
-                    <select class="form-control">
-                        <option>网吧类型</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select name="type" class="form-control" th:utext="${barOpts}" >
+
                     </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="capacity" class="col-sm-2 control-label">容量</label>
+                <div class="col-sm-10">
+                    <input type="text" name="capacity" class="form-control" id="capacity" placeholder="请输入网吧大致容量" th:title="不能为空">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone" class="col-sm-2 control-label">联系电话</label>
+                <div class="col-sm-10">
+                    <input type="text" name="phone" class="form-control" id="phone" placeholder="请输入联系电话" th:title="不能为空">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone" class="col-sm-2 control-label">图片</label>
+                <div class="col-sm-10">
+                    <input type="file" name="image" class="projectfile" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">电脑配置</label>
+                <div class="col-sm-10">
+                   <hr>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label  for="com_cpu" class="col-sm-2 control-label small text-info">CPU</label>
+                <div class="col-sm-10">
+                    <input type="text" name="com_cpu" class="form-control" id="com_cpu" placeholder="请输入电脑CPU型号" >
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label  for="com_board" class="col-sm-2 control-label small text-info">主板</label>
+                <div class="col-sm-10">
+                    <input type="text" name="com_board" class="form-control" id="com_board" placeholder="请输入电脑主板型号" >
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label  for="com_memory" class="col-sm-2 control-label small text-info">内存</label>
+                <div class="col-sm-10">
+                    <input type="text" name="com_memory" class="form-control" id="com_memory" placeholder="请输入电脑内存大小" >
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label  for="com_card" class="col-sm-2 control-label small text-info">显卡</label>
+                <div class="col-sm-10">
+                    <input type="text" name="com_card" class="form-control" id="com_card" placeholder="请输入电脑显卡" >
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label  for="com_chassis" class="col-sm-2 control-label small text-info">机箱</label>
+                <div class="col-sm-10">
+                    <input type="text" name="com_chassis" class="form-control" id="com_chassis" placeholder="请输入电脑机箱" >
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label  for="com_keyboard" class="col-sm-2 control-label small text-info">键盘</label>
+                <div class="col-sm-10">
+                    <input type="text" name="com_keyboard" class="form-control" id="com_keyboard" placeholder="请输入电脑键盘" >
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label  for="com_mouse" class="col-sm-2 control-label small text-info">鼠标</label>
+                <div class="col-sm-10">
+                    <input type="text" name="com_mouse" class="form-control" id="com_mouse" placeholder="请输入电脑鼠标" >
                 </div>
             </div>
 
@@ -66,31 +142,81 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="button" class="btn btn-default">提交</button>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block" id="submit">提交</button>
                 </div>
             </div>
         </form>
 
-        <div class="modal fade" id="myModal" tabindex="0" th:width="300px" th:height="500px" role="dialog" aria-labelledby="myModalLabel">
 
-        </div>
-
-
-        <div id="con" tabindex="0" width="300" height="2000" >
-
-        </div>
         <script>
             $(function(){
 
+                $("#form").bootstrapValidator({
+                    message: 'This value is not valid',
+                        feedbackIcons: {/*输入框不同状态，显示图片的样式*/
+                            valid: 'glyphicon glyphicon-ok',
+                            invalid: 'glyphicon glyphicon-remove',
+                            validating: 'glyphicon glyphicon-refresh'
+                    },
+
+                    fields: {
+                    name:{
+                    validators:{
+                        notEmpty:{
+                            message:'网吧名称不能为空'
+                        },
+                        stringLength:{
+                            message:'网吧名称字数范围为2到20位',
+                            min:2,
+                            max:20
+                        }
+                    }},
+                        phone:{
+                            validators:{
+                                notEmpty:{
+                                    message:'联系电话不能为空'
+                                },
+                                regexp:{
+                                    message:'联系电话不合法',
+                                    regexp: /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/,
+                                }
+                            }},
+                        addDetail:{
+                           validators:{
+                               notEmpty:{
+                                   message:'详细地址不能为空'
+                               }
+                               ,
+                               stringLength:{
+                                   message:'详细地址字数范围为2到50位',
+                                   min:2,
+                                   max:50
+                               }
+                           }
+                        }
+                }
+                });
 
 
-                var map = new AMap.Map('con',{
-                    resizeEnable: true,
-                    zoom: 10
-                    });
-            });
+
+                //电话校验
+               /* $("#submit").click(function(){
+
+                    if(isNullOrEmpty($("#phone").val())){
+                        $("#phone").tooltip('show');
+                        setTimeout(function(){$("#phone").tooltip('destroy')},2000);
+                        return;
+                    }
+
+                })*/
+
+            })
 
         </script>
+
+
+        </div>
+
 
 
 

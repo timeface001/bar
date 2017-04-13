@@ -7,6 +7,9 @@ public class Member implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;//
 
+    private String uid;
+    private String salt;//盐值
+
     private String username;//用户名即使用手机号
     private String password;//密码
     private String nickname;//昵称
@@ -87,5 +90,25 @@ public class Member implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

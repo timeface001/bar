@@ -1,4 +1,4 @@
-package com.fs.config;/**
+package com.fs.config.interceptor;/**
  * Created by fengsong on 2017/3/21.
  */
 

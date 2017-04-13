@@ -9,7 +9,7 @@ import com.fs.config.response.BaseResponse;
  */
 public interface MemberService {
 
-     int save(Member member);
+     int save(Member member)throws Exception;
 
      BaseResponse mobileExist(String mobile);
 

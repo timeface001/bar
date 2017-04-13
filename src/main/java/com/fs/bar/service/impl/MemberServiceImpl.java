@@ -6,7 +6,7 @@ import com.fs.bar.exchange.request.LoginRequest;
 import com.fs.bar.service.MemberService;
 import com.fs.config.response.BaseResponse;
 import com.fs.config.response.ResponseUtils;
-import com.fs.util.Base64Utils;
+import com.fs.util.CryptoUtils;
 import com.fs.util.GeneralUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +22,10 @@ public class MemberServiceImpl implements MemberService {
     private MemberMapper memberMapper;
 
     @Override
-    public int save(Member member) {
-        member.setPassword(Base64Utils.encodeData(member.getPassword()));
+    public int save(Member member) throws Exception{
+        String salt= CryptoUtils.getSalt();
+        member.setSalt(salt);
+        member.setPassword(CryptoUtils.getHash(member.getPassword(),salt));
         return memberMapper.save(member);
     }
 
@@ -47,9 +49,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public BaseResponse login(LoginRequest request) {
-        Member member = memberMapper.findOneByMap(GeneralUtils.generateMap("username", request.getUsername(), "password", Base64Utils.encodeData(request.getPassword())));
+        Member member = memberMapper.findOneByMap(GeneralUtils.generateMap("username", request.getUsername()));
         if (member != null) {
-            return ResponseUtils.generate().successful(member);
+            return ResponseUtils.generate(CryptoUtils.verify(member.getPassword(),request.getPassword(),member.getSalt()));
         } else {
 
             return ResponseUtils.generate().failed("msg.login.failed");

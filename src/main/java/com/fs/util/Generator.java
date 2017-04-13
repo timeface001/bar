@@ -72,7 +72,7 @@ public final class Generator {
                     xmlWriter.newLine();
                     xmlWriter.write("<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">");
                     xmlWriter.newLine();
-                    xmlWriter.write("<mapper namespace=\"cn.etsk.api.entity.domain." + fileName + "\">");
+                    xmlWriter.write("<mapper namespace=\"cn.fs.bar.dao." + fileName + "Mapper\">");
                     xmlWriter.newLine();
                     xmlWriter.write("<resultMap type=\"" + packageName + "." + fileName + "\" id=\"" + fileName + "\">");
                     xmlWriter.newLine();

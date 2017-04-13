@@ -10,6 +10,8 @@ import com.fs.util.GeneralUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -30,6 +32,7 @@ public class DictServiceImpl implements DictService {
 
     /**
      * 生成下拉选项字符串
+     *
      * @param dicts
      * @return
      */
@@ -37,6 +40,9 @@ public class DictServiceImpl implements DictService {
         StringBuffer sb = new StringBuffer();
 
         if (GeneralUtils.isNotNullOrEmpty(dicts)) {
+
+            Collections.sort(dicts, Comparator.comparingInt(Dict::getSort));
+
             for (Dict dict : dicts) {
                 sb.append("<option value=" + dict.getValue() + ">");
                 sb.append(dict.getName());
@@ -47,4 +53,5 @@ public class DictServiceImpl implements DictService {
 
         return sb.toString();
     }
+
 }
