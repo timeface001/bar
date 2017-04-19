@@ -3,6 +3,7 @@ package com.fs.bar.controller;
 import com.fs.bar.exchange.request.BarSaveRequest;
 import com.fs.bar.service.BarService;
 import com.fs.bar.service.DictService;
+import com.fs.util.LogUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,7 @@ public class BarController {
     @RequestMapping("/")
     public String index(HttpServletRequest request, Model modelMap) {
 
+        LogUtils.runDeug("test");
 
         request.setAttribute("ss", "1231");
         modelMap.addAttribute("sss", "123");
@@ -37,6 +39,7 @@ public class BarController {
     @RequestMapping("toAdd")
     public String toAdd(HttpServletRequest request) {
         request.setAttribute("barOpts", dictService.barTypeOpts());
+
         return "addBar";
     }
 
@@ -48,7 +51,12 @@ public class BarController {
     public String save(BarSaveRequest request)
     {
 
-        return "";
+        try {
+            barService.saveBar(request.generateBar());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/toAdd";
     }
 
 

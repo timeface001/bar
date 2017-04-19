@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:width="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Privacy_Policy</title>
+    <title>合肥网吧</title>
 
 
     <link th:include="fragments/lib :: lib">
@@ -15,6 +15,9 @@
     <script type="text/javascript" th:src="@{/js/fileinput.js}" ></script>
     <link  rel="stylesheet" th:href="@{/css/fileinput.css}"/>
     <script type="text/javascript" th:src="@{/js/zh.js}" ></script>
+
+    <link  rel="stylesheet" th:href="@{/js/plugins/summernote/summernote.css}"/>
+    <script type="text/javascript" th:src="@{/js/plugins/summernote/summernote.js}" ></script>
 
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <h3>发现网吧</h3>
 
 
-        <form id="form" class="form-horizontal" role="form" method="post">
+        <form id="form" class="form-horizontal" role="form" method="post" th:action="@{/save}">
             <div class="form-group">
                 <label for="firstname" class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-10">
@@ -75,10 +78,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
             </div>
 
+
             <div class="form-group">
                 <label for="phone" class="col-sm-2 control-label">图片</label>
                 <div class="col-sm-10">
-                    <input type="file" name="image" class="projectfile" />
+                    <input id="uploadImg" class="file"  type="file" multiple data-min-file-count="1">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="summernote" class="col-sm-2 control-label">简介</label>
+                <div class="col-sm-10">
+                    <div id="summernote" ></div>
+                    <input name="description" type="hidden" id="description">
                 </div>
             </div>
 
@@ -150,8 +162,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <script>
             $(function(){
+                $(document).ready(function() {
+                    $('#summernote').summernote();
+                });
 
-                $("#form").bootstrapValidator({
+                $("#submit").click(function(){
+                    console.log(1);
+                    $("#description").val($('#summernote').summernote("code"));
+                    $("#form").submit();
+                });
+
+         /*       $("#uploadImg").fileinput({
+                    uploadUrl:"/uploadImg",//上传的地址
+                    uploadAsync: true,
+                    language : "zh",//设置语言
+                    showCaption: true,//是否显示标题
+                    showUpload: true, //是否显示上传按钮
+                    browseClass: "btn btn-primary", //按钮样式
+                    allowedFileExtensions: ["jpg", "png","jpeg"], //接收的文件后缀
+                    maxFileCount: 10,//最大上传文件数限制
+                    uploadAsync: true,
+                    previewFileIcon: '<i class="glyphicon glyphicon-file"></i>',
+                    uploadExtraData: function() {
+                        var extraValue = null;
+                        var radios = document.getElementsByName('excelType');
+                        for(var i=0;i<radios.length;i++){
+                            if(radios[i].checked){
+                                extraValue = radios[i].value;
+                            }
+                        }
+                        return {"excelType": extraValue};
+                    },
+                    allowedPreviewTypes: null
+                });*/
+
+                $("122").bootstrapValidator({
                     message: 'This value is not valid',
                         feedbackIcons: {/*输入框不同状态，显示图片的样式*/
                             valid: 'glyphicon glyphicon-ok',

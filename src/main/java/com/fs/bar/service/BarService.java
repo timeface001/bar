@@ -8,7 +8,7 @@ import com.fs.bar.entity.BarComputer;
  */
 public interface BarService {
 
-    boolean saveBar(Bar bar) ;
+    boolean saveBar(Bar bar) throws Exception;
 
     boolean saveBarComputer(BarComputer barComputer) ;
 

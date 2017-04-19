@@ -1,6 +1,5 @@
 package com.fs.config.interceptor;
 
-import com.alibaba.fastjson.JSON;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -8,6 +7,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,19 +17,20 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 拦截器：记录用户操作日志，检查用户是否登录……
+ * 拦截器：记录用户操作日志，堆栈信息添加到日志中
  * Created by fengsong on 2017/3/9.
  */
 
 @Aspect
-public class ConstantInterceptor {
+@Configuration
+public class LogUtilsAspect {
 
-    private static final Logger logger = LoggerFactory.getLogger(ConstantInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(LogUtilsAspect.class);
 
     /**
      * 定义拦截规则：拦截com.fs.bar.controller包下面的所有类中，有@RequestMapping注解的方法。
      */
-    @Pointcut("execution(* com.fs.bar.controller..*(..)) and @annotation(org.springframework.web.bind.annotation.RequestMapping)")
+    @Pointcut("execution(* com.fs.util.LogUtils..*(..))")
     public void controllerMethodPointcut() {
     }
 
@@ -46,10 +47,8 @@ public class ConstantInterceptor {
 
         String methodName = method.getName(); //获取被拦截的方法名
 
+        System.out.println("拦截器");
         Set<Object> allParams = new LinkedHashSet<>(); //保存所有请求参数，用于输出到日志中
-
-        logger.info("request_url:{},params:{}", methodName, JSON.toJSONString(allParams));
-
 
         Object result = null;
 

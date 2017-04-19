@@ -26,6 +26,7 @@ public class BarSaveRequest {
     private String phone;
     private Integer capacity;//网吧容量
     private String images;//图片
+    private String description;//网吧简介
 
 
     private String com_cpu;
@@ -148,6 +149,14 @@ public class BarSaveRequest {
         this.capacity = capacity;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Bar generateBar() {
         Bar bar = new Bar();
 
@@ -155,6 +164,7 @@ public class BarSaveRequest {
         bar.setAddress("安徽省合肥市" + this.area + " " + this.addDetail);
         bar.setCapacity(this.capacity);
         bar.setComments(0);
+        bar.setDescription(this.description);
 
         return bar;
     }
