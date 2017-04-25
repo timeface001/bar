@@ -1,4 +1,5 @@
-package com;/**
+package com;
+/**
  * Created by fengsong on 2017/4/17.
  */
 
@@ -14,11 +15,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class LogUtilsTest {
 
+
+
     @Test
-    public void testLog(){
-        LogUtils.runDeug("测试");
+    public void testLog() throws Exception {
 
 
+        LogUtils.runDeug("stacj");
 
     }
 }

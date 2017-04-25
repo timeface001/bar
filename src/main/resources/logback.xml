@@ -1,186 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-    <!--
-       说明：
-       1、日志级别及文件
-           日志记录采用分级记录，级别与日志文件名相对应，不同级别的日志信息记录到不同的日志文件中
-           例如：error级别记录到log_error_xxx.log或log_error.log（该文件为当前记录的日志文件），而log_error_xxx.log为归档日志，
-           日志文件按日期记录，同一天内，若日志文件大小等于或大于2M，则按0、1、2...顺序分别命名
-           例如log-level-2013-12-21.0.log
-           其它级别的日志也是如此。
-       2、文件路径
-           若开发、测试用，在Eclipse中运行项目，则到Eclipse的安装路径查找logs文件夹，以相对路径../logs。
-           若部署到Tomcat下，则在Tomcat下的logs文件中
-       3、Appender
-           FILEERROR对应error级别，文件名以log-error-xxx.log形式命名
-           FILEWARN对应warn级别，文件名以log-warn-xxx.log形式命名
-           FILEINFO对应info级别，文件名以log-info-xxx.log形式命名
-           FILEDEBUG对应debug级别，文件名以log-debug-xxx.log形式命名
-           stdout将日志信息输出到控制上，为方便开发测试使用
-    -->
-    <contextName>nbar</contextName>
-    <property name="LOG_PATH" value="F://bar" />
-    <!--设置系统日志目录-->
-    <property name="APPDIR" value="logs" />
-    <!-- 日志记录器，日期滚动记录 -->
-    <appender name="FILEERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${LOG_PATH}/${APPDIR}/error.log</file>
-        <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 归档的日志文件的路径，例如今天是2013-12-21日志，当前写的日志文件路径为file节点指定，可以将此文件与file指定文件路径设置为不同路径，从而将当前日志文件或归档日志文件置不同的目录。
-            而2013-12-21的日志文件在由fileNamePattern指定。%d{yyyy-MM-dd}指定日期格式，%i指定索引 -->
-            <fileNamePattern>${LOG_PATH}/${APPDIR}/error/log-error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <!-- 除按日志记录之外，还配置了日志文件不能超过2M，若超过2M，日志文件会以索引0开始，
-            命名日志文件，例如log-error-2013-12-21.0.log -->
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>2MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-        </rollingPolicy>
-        <!-- 追加方式记录日志 -->
-        <append>true</append>
-        <!-- 日志文件的格式 -->
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>===%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger Line:%-3L - %msg%n</pattern>
-            <charset>utf-8</charset>
-        </encoder>
-        <!-- 此日志文件只记录info级别的 -->
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>error</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-    </appender>
+<!--
+-scan:当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true
+-scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。
+-           当scan为true时，此属性生效。默认的时间间隔为1分钟
+-debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。
+-
+- configuration 子节点为 appender、logger、root
+-->
+<configuration scan="true" scanPeriod="60 second" debug="false">
 
-    <appender name="FILEDEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${LOG_PATH}/${APPDIR}/debug.log</file>
-        <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 归档的日志文件的路径，例如今天是2013-12-21日志，当前写的日志文件路径为file节点指定，可以将此文件与file指定文件路径设置为不同路径，从而将当前日志文件或归档日志文件置不同的目录。
-            而2013-12-21的日志文件在由fileNamePattern指定。%d{yyyy-MM-dd}指定日期格式，%i指定索引 -->
-            <fileNamePattern>${LOG_PATH}/${APPDIR}/error/log-error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <!-- 除按日志记录之外，还配置了日志文件不能超过2M，若超过2M，日志文件会以索引0开始，
-            命名日志文件，例如log-error-2013-12-21.0.log -->
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>2MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-        </rollingPolicy>
-        <!-- 追加方式记录日志 -->
-        <append>true</append>
-        <!-- 日志文件的格式 -->
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>===%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger Line:%-3L - %msg%n</pattern>
-            <charset>utf-8</charset>
-        </encoder>
-        <!-- 此日志文件只记录info级别的 -->
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>debug</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-    </appender>
-
-    <!-- 日志记录器，日期滚动记录 -->
-    <appender name="FILEWARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${LOG_PATH}/${APPDIR}/warn.log</file>
-        <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 归档的日志文件的路径，例如今天是2013-12-21日志，当前写的日志文件路径为file节点指定，可以将此文件与file指定文件路径设置为不同路径，从而将当前日志文件或归档日志文件置不同的目录。
-            而2013-12-21的日志文件在由fileNamePattern指定。%d{yyyy-MM-dd}指定日期格式，%i指定索引 -->
-            <fileNamePattern>${LOG_PATH}/${APPDIR}/warn/log-warn-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <!-- 除按日志记录之外，还配置了日志文件不能超过2M，若超过2M，日志文件会以索引0开始，
-            命名日志文件，例如log-error-2013-12-21.0.log -->
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>2MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-        </rollingPolicy>
-        <!-- 追加方式记录日志 -->
-        <append>true</append>
-        <!-- 日志文件的格式 -->
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>===%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger Line:%-3L - %msg%n</pattern>
-            <charset>utf-8</charset>
-        </encoder>
-        <!-- 此日志文件只记录info级别的 -->
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>warn</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-    </appender>
-
-    <!-- 日志记录器，日期滚动记录 -->
-    <appender name="FILEINFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${LOG_PATH}/${APPDIR}/info.log</file>
-        <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 归档的日志文件的路径，例如今天是2013-12-21日志，当前写的日志文件路径为file节点指定，可以将此文件与file指定文件路径设置为不同路径，从而将当前日志文件或归档日志文件置不同的目录。
-            而2013-12-21的日志文件在由fileNamePattern指定。%d{yyyy-MM-dd}指定日期格式，%i指定索引 -->
-            <fileNamePattern>${LOG_PATH}/${APPDIR}/info/info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <!-- 除按日志记录之外，还配置了日志文件不能超过2M，若超过2M，日志文件会以索引0开始，
-            命名日志文件，例如log-error-2013-12-21.0.log -->
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>2MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-        </rollingPolicy>
-        <!-- 追加方式记录日志 -->
-        <append>true</append>
-        <!-- 日志文件的格式 -->
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>===%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %msg%n</pattern>
-            <charset>utf-8</charset>
-        </encoder>
-        <!-- 此日志文件只记录info级别的 -->
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>info</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-    </appender>
-
-    <!-- 记录总日志  -->
+    <!-- 负责写日志,控制台日志 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${LOG_PATH}/${APPDIR}/run.log</file>
-        <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 归档的日志文件的路径，例如今天是2013-12-21日志，当前写的日志文件路径为file节点指定，可以将此文件与file指定文件路径设置为不同路径，从而将当前日志文件或归档日志文件置不同的目录。
-            而2013-12-21的日志文件在由fileNamePattern指定。%d{yyyy-MM-dd}指定日期格式，%i指定索引 -->
-            <fileNamePattern>${LOG_PATH}/${APPDIR}/run/run-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <!-- 除按日志记录之外，还配置了日志文件不能超过2M，若超过2M，日志文件会以索引0开始，
-            命名日志文件，例如log-error-2013-12-21.0.log -->
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>2MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-        </rollingPolicy>
-        <!-- 追加方式记录日志 -->
-        <append>true</append>
 
-        <!--encoder 默认配置为PatternLayoutEncoder-->
+        <!-- 一是把日志信息转换成字节数组,二是把字节数组写入到输出流 -->
         <encoder>
-            <pattern>===%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger Line:%-3L - %msg%n</pattern>
-            <charset>utf-8</charset>
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%5level] [%thread] %logger{0} %msg%n</Pattern>
+            <charset>UTF-8</charset>
         </encoder>
-        <!--此日志appender是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息-->
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>debug</level>
-        </filter>
     </appender>
 
-    <logger name="org.springframework" level="WARN" />
-    <logger name="org.hibernate" level="WARN" />
+    <!-- 文件日志 -->
+    <appender name="DEBUG" class="ch.qos.logback.core.FileAppender">
+        <file>log/debug.log</file>
+        <!-- append: true,日志被追加到文件结尾; false,清空现存文件;默认是true -->
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- LevelFilter: 级别过滤器，根据日志级别进行过滤 -->
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%5level] [%thread] %logger{0} %msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
 
-    <!-- 生产环境下，将此级别配置为适合的级别，以免日志文件太多或影响程序性能 -->
+    <!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 -->
+    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>log/info.log</File>
+
+        <!-- ThresholdFilter:临界值过滤器，过滤掉 TRACE 和 DEBUG 级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+
+        <encoder>
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%5level] [%thread] %logger{0} %msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 每天生成一个日志文件，保存30天的日志文件
+            - 如果隔一段时间没有输出日志，前面过期的日志不会被删除，只有再重新打印日志的时候，会触发删除过期日志的操作。
+            -->
+            <fileNamePattern>info.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender >
+
+    <!--<!– 异常日志输出 –>-->
+    <!--<appender name="EXCEPTION" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--<file>exception.log</file>-->
+    <!--<!– 求值过滤器，评估、鉴别日志是否符合指定条件. 需要额外的两个JAR包，commons-compiler.jar和janino.jar –>-->
+    <!--<filter class="ch.qos.logback.core.filter.EvaluatorFilter">-->
+    <!--<!– 默认为 ch.qos.logback.classic.boolex.JaninoEventEvaluator –>-->
+    <!--<evaluator>-->
+    <!--<!– 过滤掉所有日志消息中不包含"Exception"字符串的日志 –>-->
+    <!--<expression>return message.contains("Exception");</expression>-->
+    <!--</evaluator>-->
+    <!--<OnMatch>ACCEPT</OnMatch>-->
+    <!--<OnMismatch>DENY</OnMismatch>-->
+    <!--</filter>-->
+
+    <!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+    <!--<!– 触发节点，按固定文件大小生成，超过5M，生成新的日志文件 –>-->
+    <!--<maxFileSize>5MB</maxFileSize>-->
+    <!--</triggeringPolicy>-->
+    <!--</appender>-->
+
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/error.log</file>
+
+        <encoder>
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%5level] [%thread] %logger{0} %msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+
+        <!-- 按照固定窗口模式生成日志文件，当文件大于20MB时，生成新的日志文件。
+        -    窗口大小是1到3，当保存了3个归档文件后，将覆盖最早的日志。
+        -    可以指定文件压缩选项
+        -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>error.%d{yyyy-MM}(%i).log.zip</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>3</maxIndex>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 异步输出 -->
+    <appender name ="ASYNC" class= "ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold >0</discardingThreshold>
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+        <queueSize>512</queueSize>
+        <!-- 添加附加的appender,最多只能添加一个 -->
+        <appender-ref ref ="ERROR"/>
+    </appender>
+
+    <!--
+    - 1.name：包名或类名，用来指定受此loger约束的某一个包或者具体的某一个类
+    - 2.未设置打印级别，所以继承他的上级<root>的日志级别“DEBUG”
+    - 3.未设置addtivity，默认为true，将此loger的打印信息向上级传递；
+    - 4.未设置appender，此loger本身不打印任何信息，级别为“DEBUG”及大于“DEBUG”的日志信息传递给root，
+    -  root接到下级传递的信息，交给已经配置好的名为“STDOUT”的appender处理，“STDOUT”appender将信息打印到控制台；
+    -->
+    <logger name="ch.qos.logback" />
+
+    <!--
+    - 1.将级别为“INFO”及大于“INFO”的日志信息交给此loger指定的名为“STDOUT”的appender处理，在控制台中打出日志，
+    -   不再向次loger的上级 <logger name="logback"/> 传递打印信息
+    - 2.level：设置打印级别（TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF），还有一个特俗值INHERITED或者同义词NULL，代表强制执行上级的级别。
+    -        如果未设置此属性，那么当前loger将会继承上级的级别。
+    - 3.additivity：为false，表示此loger的打印信息不再向上级传递,如果设置为true，会打印两次
+    - 4.appender-ref：指定了名字为"STDOUT"的appender。
+    -->
+    <logger name="com.weizhi.common.LogMain" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <!--<appender-ref ref="DEBUG"/>-->
+        <!--<appender-ref ref="EXCEPTION"/>-->
+        <!--<appender-ref ref="INFO"/>-->
+        <!--<appender-ref ref="ERROR"/>-->
+
+        <appender-ref ref="ASYNC"/>
+    </logger>
+
+
+    <!--
+    - 根logger
+    - level:设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF，不能设置为INHERITED或者同义词NULL。
+    -       默认是DEBUG。
+    -appender-ref:可以包含零个或多个<appender-ref>元素，标识这个appender将会添加到这个loger
+    -->
     <root level="DEBUG">
-        <appender-ref ref="FILEERROR" />
-        <appender-ref ref="FILEWARN" />
-        <appender-ref ref="FILEINFO" />
-        <appender-ref ref="FILEDEBUG" />
-
-        <!-- 生产环境将请stdout,testfile去掉 -->
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
+        <!--<appender-ref ref="DEBUG"/>-->
+        <!--<appender-ref ref="EXCEPTION"/>-->
+        <!--<appender-ref ref="INFO"/>-->
+        <appender-ref ref="ASYNC"/>
     </root>
 </configuration>

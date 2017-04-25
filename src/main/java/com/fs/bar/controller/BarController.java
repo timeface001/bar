@@ -27,6 +27,7 @@ public class BarController {
     @RequestMapping("/")
     public String index(HttpServletRequest request, Model modelMap) {
 
+
         LogUtils.runDeug("test");
 
         request.setAttribute("ss", "1231");

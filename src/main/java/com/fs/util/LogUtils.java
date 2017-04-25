@@ -5,6 +5,8 @@ package com.fs.util;/**
 
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+
 /**
  * @author fengsong
  * @description:一句话描述下类的功能
@@ -20,12 +22,21 @@ public class LogUtils {
         logger.error(msg);
 
 
+        logger.trace("123123");
+
+        System.out.println(getStack());;
+
 
     }
 
-    /*StackTraceElement[] elements= new Throwable().getStackTrace();
-        for(StackTraceElement element:elements){
-        System.out.println(element.getClassName()+""+element.getMethodName()+""+element.getLineNumber());
-    }*/
+    public static String getStack()
+    {
+
+        StackTraceElement element= Arrays.asList(new Throwable().getStackTrace()).get(2);
+
+        return element.getMethodName()+","+element.getLineNumber();
+    }
+
+
 
 }

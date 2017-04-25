@@ -1,4 +1,5 @@
-package com.fs.config.interceptor;/**
+package com.fs.config.interceptor;
+/**
  * Created by fengsong on 2017/3/21.
  */
 
@@ -11,7 +12,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author fengsong
@@ -40,6 +45,16 @@ public class ControllerAdvice implements ResponseBodyAdvice<BaseResponse> {
         }
 
         return baseResponse;
+    }
+
+    @ExceptionHandler()
+    public Object MethodArgumentNotValidHandler(HttpServletRequest request,
+                                                Exception e, HttpServletResponse response) throws Exception
+    {
+
+        response.sendRedirect("/error/500.html");
+
+        return "";
     }
 
 }
